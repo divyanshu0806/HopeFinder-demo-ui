@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>HopeFinder — Disaster Response</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="icon" type="image/png" href="data:image/png;base64,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" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#F5F7FA;
+  --surface:#FFFFFF;
+  --surface-alt:#EEF2F7;
+  --border:#E2E8EF;
+  --border-strong:#CBD5E1;
+  --text:#101B2D;
+  --text-soft:#4B5768;
+  --text-faint:#8592A3;
+  --blue:#1D4FA8;
+  --blue-dark:#123B85;
+  --blue-tint:#E9F0FC;
+  --teal:#0E8A82;
+  --teal-tint:#E4F6F4;
+  --red:#D8332B;
+  --red-tint:#FCEAE9;
+  --amber:#C9740A;
+  --amber-tint:#FBF0DF;
+  --green:#1C8A4B;
+  --green-tint:#E7F6ED;
+  --radius-sm:10px;
+  --radius-md:14px;
+  --radius-lg:20px;
+  --shadow-sm:0 1px 2px rgba(16,27,45,0.06);
+  --shadow-md:0 4px 16px rgba(16,27,45,0.08);
+  --shadow-lg:0 12px 32px rgba(16,27,45,0.14);
+  --font: -apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;min-height:100%;background:#0b1220;}
+html{ overflow-y:auto; }
+body{
+  font-family:var(--font);
+  color:var(--text);
+  display:flex; justify-content:center; align-items:center;
+  min-height:100vh;
+  padding:10px;
+  background:radial-gradient(circle at 50% 0%,#1b2740,#0b1220 70%);
+  overflow-y:auto;
+}
+/* ============ PHONE FRAME (device mockup) ============ */
+/* Width/height are set by JS (fitPhoneFrame) to exactly fill the available
+   viewport, since vh/vw units are unreliable inside embedded iframes.
+   These are just fallback values before JS runs. */
+.phone-frame{
+  position:relative;
+  width:390px; height:844px;
+  max-width:96vw; max-height:96vh;
+  box-sizing:border-box;
+  background:linear-gradient(160deg,#1a2333,#0d1420);
+  border-radius:44px;
+  padding:12px;
+  box-shadow:0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.06) inset;
+  flex-shrink:0;
+}
+.phone-sidebtn{ position:absolute; background:#0d1420; border-radius:3px; }
+.phone-sidebtn.power{ right:-3px; top:150px; width:3px; height:60px; }
+.phone-sidebtn.vol1{ left:-3px; top:110px; width:3px; height:30px; }
+.phone-sidebtn.vol2{ left:-3px; top:150px; width:3px; height:50px; }
+.phone-notch{
+  position:absolute; top:12px; left:50%; transform:translateX(-50%);
+  width:120px; height:24px; background:#0d1420; border-bottom-left-radius:16px; border-bottom-right-radius:16px; z-index:80;
+}
+.phone-screen{
+  position:relative;
+  width:100%; height:100%;
+  background:var(--bg);
+  border-radius:32px;
+  overflow:hidden;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.05);
+}
+.phone-home-indicator{
+  position:absolute; bottom:6px; left:50%; transform:translateX(-50%);
+  width:118px; height:4px; border-radius:3px; background:rgba(255,255,255,.28); z-index:80;
+}
+.status-bar{
+  position:absolute; top:0; left:0; right:0; height:32px; z-index:70;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 28px; font-size:12.5px; font-weight:700; color:var(--text);
+  background:var(--surface);
+}
+.status-bar .sb-icons{ display:flex; align-items:center; gap:5px; }
+.status-bar svg{ width:15px; height:15px; }
+#device{ display:none; } /* legacy, unused */
+#app{ position:absolute; top:32px; left:0; right:0; bottom:0; overflow-y:auto; -webkit-overflow-scrolling:touch; padding-bottom:82px; display:flex; flex-direction:column; }
+::selection{ background:var(--blue-tint); }
+button{ font-family:inherit; cursor:pointer; }
+a{ text-decoration:none; color:inherit; }
+input,textarea,select{ font-family:inherit; }
+.scr{ animation: fadein .18s ease; display:flex; flex-direction:column; flex:1; }
+@keyframes fadein{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+.hidden{ display:none !important; }
+
+/* ============ TOP HEADER ============ */
+.topbar{
+  position:sticky; top:0; z-index:30;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:14px 16px;
+  display:flex; align-items:center; gap:12px;
+}
+.topbar .icon-btn{
+  width:36px;height:36px;border-radius:10px;border:none;background:var(--surface-alt);
+  display:flex;align-items:center;justify-content:center;color:var(--text-soft); flex-shrink:0; position:relative;
+}
+.topbar .icon-btn:active{ background:var(--border); }
+.topbar .brand{ flex:1; text-align:center; display:flex; align-items:center; justify-content:center; gap:8px; }
+.brand-badge{ width:28px;height:28px;border-radius:8px; overflow:hidden; display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px; background:#fff; }
+.brand-badge img{ width:100%; height:100%; object-fit:cover; }
+.brand-name{ font-weight:800; font-size:15px; letter-spacing:-0.02em; color:var(--text); }
+.dot-badge{ position:absolute; top:5px; right:5px; width:8px;height:8px;border-radius:50%; background:var(--red); border:1.5px solid var(--surface); }
+.header-title{ font-size:16px; font-weight:700; flex:1; }
+
+.location-strip{
+  padding:10px 16px; background:var(--surface); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; font-size:12.5px;
+}
+.location-strip .loc{ display:flex; align-items:center; gap:6px; color:var(--text); font-weight:600; }
+.location-strip .status{ color:var(--green); display:flex; align-items:center; gap:5px; font-weight:600; }
+.status-dot{ width:6px;height:6px;border-radius:50%; background:var(--green); }
+.offline .status{ color:var(--amber); }
+.offline .status-dot{ background:var(--amber); }
+
+/* ============ SCROLL AREA ============ */
+.content{ flex:1; padding:16px; padding-bottom:24px; }
+.content.nopad{ padding:0; }
+
+/* ============ BOTTOM NAV ============ */
+/* #bottomNavHost is a persistent sibling of #app (not nested inside the
+   scrolling content), pinned to the bottom of .phone-screen. This avoids
+   relying on an absolutely-positioned element inside a scrolling container
+   (which can misbehave when the scroll container's own box sizing gets
+   affected by flex/content quirks) — it simply always renders at the
+   bottom edge of the phone, regardless of #app's scroll position. */
+#bottomNavHost{
+  position:absolute; bottom:0; left:0; right:0; z-index:40;
+}
+.bottomnav{
+  background:var(--surface); border-top:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-around; padding:8px 6px 20px;
+}
+.nav-item{ background:none;border:none; display:flex; flex-direction:column; align-items:center; gap:3px; color:var(--text-faint); font-size:10.5px; font-weight:600; padding:4px 8px; border-radius:10px; }
+.nav-item.active{ color:var(--blue); }
+.nav-item svg{ width:21px; height:21px; }
+.nav-sos{ background:var(--red); color:#fff; width:50px;height:50px;border-radius:50%; display:flex;align-items:center;justify-content:center; margin-top:-26px; box-shadow:0 6px 16px rgba(216,51,43,0.4); border:3px solid var(--surface); }
+.nav-sos svg{ width:22px;height:22px; }
+.nav-sos span{ display:none; }
+
+/* ============ CARDS ============ */
+.card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); }
+.section-title{ font-size:12.5px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:.04em; margin:22px 0 10px; }
+.section-title:first-child{ margin-top:0; }
+
+/* Alert banner */
+.alert-banner{ border-radius:var(--radius-md); padding:14px; border:1px solid #F2C9C7; background:linear-gradient(180deg,#FDECEB,#FBE2E0); position:relative; overflow:hidden; }
+.alert-banner .row1{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.alert-flag{ display:flex; align-items:center; gap:6px; color:var(--red); font-weight:700; font-size:12.5px; }
+.severity-pill{ background:var(--red); color:#fff; font-size:10.5px; font-weight:800; padding:4px 9px; border-radius:20px; letter-spacing:.02em; }
+.alert-banner h3{ margin:2px 0 6px; font-size:16px; color:#7A211C; }
+.alert-banner p{ margin:0 0 10px; font-size:13px; color:#7A2A26; line-height:1.5; }
+.alert-meta{ display:flex; align-items:center; justify-content:space-between; font-size:11.5px; color:#9A5450; }
+.link-btn{ color:var(--red); font-weight:700; font-size:12.5px; display:flex; align-items:center; gap:3px; background:none; border:none; padding:0; }
+
+/* Emergency grid */
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.svc-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px 12px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow-sm); text-align:left; border-bottom:3px solid transparent; }
+.svc-card:active{ background:var(--surface-alt); }
+.svc-ic{ width:36px;height:36px;border-radius:10px; display:flex;align-items:center;justify-content:center; }
+.svc-card b{ font-size:13.5px; color:var(--text); }
+.svc-card small{ font-size:11px; color:var(--text-faint); }
+
+/* AI card */
+.ai-card{ background:linear-gradient(135deg,var(--blue-dark),var(--blue) 60%, var(--teal)); border-radius:var(--radius-lg); padding:18px; color:#fff; box-shadow:var(--shadow-md); }
+.ai-card .top{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.ai-avatar{ width:34px;height:34px;border-radius:10px; background:rgba(255,255,255,.18); display:flex;align-items:center;justify-content:center; font-size:17px; }
+.ai-card h4{ margin:0; font-size:15px; }
+.live-chip{ background:rgba(255,255,255,.2); font-size:10px; font-weight:700; padding:2px 7px; border-radius:20px; margin-left:6px; }
+.ai-card p{ font-size:12.5px; line-height:1.5; margin:6px 0 14px; color:rgba(255,255,255,.88); }
+.ai-actions{ display:flex; gap:8px; }
+.btn-white{ flex:1; background:#fff; color:var(--blue-dark); border:none; border-radius:12px; padding:11px; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; gap:6px; }
+.btn-ghost-white{ background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:12px; padding:11px 14px; font-weight:700; font-size:13px; display:flex;align-items:center;gap:6px; }
+.quick-prompts{ display:flex; gap:7px; margin-top:12px; overflow-x:auto; padding-bottom:2px; }
+.qp{ background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:20px; padding:7px 12px; font-size:11.5px; white-space:nowrap; font-weight:600; }
+
+/* Resource rows */
+.res-row{ display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px; margin-bottom:10px; box-shadow:var(--shadow-sm); }
+.res-ic{ width:42px;height:42px;border-radius:11px; display:flex;align-items:center;justify-content:center; flex-shrink:0; }
+.res-row .info{ flex:1; min-width:0; }
+.res-row .info b{ font-size:13.5px; display:block; }
+.res-row .info small{ color:var(--text-faint); font-size:11.5px; }
+.pill-btn{ border:none; border-radius:10px; padding:9px 13px; font-weight:700; font-size:12px; display:flex; align-items:center; gap:5px; white-space:nowrap; }
+.pill-btn.blue{ background:var(--blue); color:#fff; }
+.pill-btn.red{ background:var(--red); color:#fff; }
+.pill-btn.outline{ background:var(--surface); color:var(--blue); border:1.5px solid var(--blue); }
+.pill-btn.gray{ background:var(--surface-alt); color:var(--text-soft); }
+
+/* Generic list card row */
+.list-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px; margin-bottom:12px; box-shadow:var(--shadow-sm); }
+.list-card .row-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+.badge{ font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:20px; letter-spacing:.02em; white-space:nowrap; }
+.badge.red{ background:var(--red-tint); color:var(--red); }
+.badge.amber{ background:var(--amber-tint); color:var(--amber); }
+.badge.green{ background:var(--green-tint); color:var(--green); }
+.badge.blue{ background:var(--blue-tint); color:var(--blue); }
+.badge.gray{ background:var(--surface-alt); color:var(--text-soft); }
+
+/* Buttons generic */
+.btn{ width:100%; border:none; border-radius:13px; padding:14px; font-weight:700; font-size:14.5px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.btn.primary{ background:var(--blue); color:#fff; }
+.btn.danger{ background:var(--red); color:#fff; }
+.btn.outline{ background:var(--surface); border:1.5px solid var(--border-strong); color:var(--text); }
+.btn.success{ background:var(--green); color:#fff; }
+.btn[disabled]{ opacity:.5; }
+.btn-row{ display:flex; gap:10px; }
+.btn-row .btn{ flex:1; }
+
+/* Forms */
+.field{ margin-bottom:14px; }
+.field label{ display:block; font-size:12.5px; font-weight:700; color:var(--text-soft); margin-bottom:6px; }
+.field input[type=text], .field input[type=number], .field input[type=tel], .field textarea, .field select{
+  width:100%; border:1.5px solid var(--border); border-radius:11px; padding:12px; font-size:14px; background:var(--surface); color:var(--text);
+}
+.field textarea{ resize:vertical; min-height:80px; }
+.field input:focus, .field textarea:focus, .field select:focus{ outline:none; border-color:var(--blue); }
+.chip-select{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ padding:10px 14px; border-radius:12px; border:1.5px solid var(--border); background:var(--surface); font-size:13px; font-weight:600; color:var(--text-soft); display:flex; align-items:center; gap:6px; }
+.chip.selected{ border-color:var(--blue); background:var(--blue-tint); color:var(--blue); }
+.upload-box{ border:1.5px dashed var(--border-strong); border-radius:12px; padding:18px; text-align:center; color:var(--text-faint); font-size:12.5px; background:var(--surface-alt); }
+.upload-box b{ display:block; color:var(--text-soft); font-size:13px; margin-top:4px; }
+
+/* Stepper */
+.stepper{ display:flex; align-items:center; margin-bottom:20px; }
+.stepper .step{ display:flex; align-items:center; gap:8px; flex:1; }
+.stepper .circle{ width:26px;height:26px;border-radius:50%; background:var(--surface-alt); color:var(--text-faint); display:flex;align-items:center;justify-content:center; font-size:12px; font-weight:800; border:1.5px solid var(--border); flex-shrink:0; }
+.stepper .step.done .circle{ background:var(--green); color:#fff; border-color:var(--green); }
+.stepper .step.current .circle{ background:var(--blue); color:#fff; border-color:var(--blue); }
+.stepper .label{ font-size:11.5px; font-weight:700; color:var(--text-faint); }
+.stepper .step.current .label, .stepper .step.done .label{ color:var(--text); }
+.stepper .bar{ height:2px; flex:1; background:var(--border); margin:0 4px; }
+.stepper .bar.done{ background:var(--green); }
+
+/* Tabs */
+.tabs{ display:flex; background:var(--surface-alt); border-radius:12px; padding:4px; gap:4px; margin-bottom:16px; }
+.tab{ flex:1; border:none; background:none; padding:9px 6px; border-radius:9px; font-weight:700; font-size:12.5px; color:var(--text-faint); }
+.tab.active{ background:var(--surface); color:var(--blue); box-shadow:var(--shadow-sm); }
+
+/* Empty / loading / error */
+.state-box{ text-align:center; padding:40px 20px; color:var(--text-faint); }
+.state-box .ic{ font-size:32px; margin-bottom:10px; }
+.state-box b{ display:block; color:var(--text-soft); font-size:14px; margin-bottom:4px; }
+.spinner{ width:26px;height:26px; border:3px solid var(--border); border-top-color:var(--blue); border-radius:50%; animation:spin .7s linear infinite; margin:0 auto 12px; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.toast{ position:absolute; bottom:96px; left:50%; transform:translateX(-50%); background:#101B2D; color:#fff; padding:11px 18px; border-radius:30px; font-size:12.5px; font-weight:600; box-shadow:var(--shadow-lg); z-index:99; display:flex; align-items:center; gap:8px; max-width:82%; text-align:center; }
+
+/* SOS screen */
+.sos-hero{ text-align:center; padding:26px 10px 10px; }
+.sos-ring{ width:150px;height:150px; border-radius:50%; margin:0 auto 18px; background:radial-gradient(circle,var(--red-tint) 0%, transparent 70%); display:flex; align-items:center; justify-content:center; }
+.sos-btn-big{ width:112px;height:112px; border-radius:50%; background:linear-gradient(160deg,#E24138,var(--red)); color:#fff; border:none; box-shadow:0 10px 26px rgba(216,51,43,.4); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-weight:800; font-size:12.5px; }
+.sos-btn-big svg{ width:30px;height:30px; }
+.slider-track{ position:relative; height:60px; border-radius:30px; background:var(--red-tint); border:1.5px solid #F2C9C7; margin-top:22px; overflow:hidden; user-select:none; }
+.slider-fill{ position:absolute; top:0; left:0; bottom:0; background:linear-gradient(90deg,#F3B3AF,var(--red)); border-radius:30px; }
+.slider-label{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#8A2C26; font-weight:700; font-size:13px; letter-spacing:.01em; pointer-events:none; }
+.slider-thumb{ position:absolute; top:5px; left:5px; width:50px;height:50px; border-radius:50%; background:var(--red); display:flex;align-items:center;justify-content:center; color:#fff; box-shadow:0 4px 10px rgba(0,0,0,.25); touch-action:none; }
+.info-row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); font-size:13px; }
+.info-row:last-child{ border-bottom:none; }
+.info-row span:first-child{ color:var(--text-faint); }
+.info-row span:last-child{ font-weight:700; color:var(--text); }
+
+/* Status timeline */
+.timeline{ margin-top:6px; }
+.tl-item{ display:flex; gap:12px; }
+.tl-dotcol{ display:flex; flex-direction:column; align-items:center; }
+.tl-dot{ width:22px;height:22px;border-radius:50%; background:var(--surface-alt); border:2px solid var(--border-strong); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.tl-dot.done{ background:var(--green); border-color:var(--green); color:#fff; }
+.tl-dot.active{ background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 0 0 4px var(--blue-tint); }
+.tl-line{ width:2px; flex:1; background:var(--border-strong); min-height:26px; }
+.tl-line.done{ background:var(--green); }
+.tl-body{ padding-bottom:22px; }
+.tl-body b{ font-size:13.5px; display:block; }
+.tl-body small{ color:var(--text-faint); font-size:11.5px; }
+
+/* Map */
+#leafletMap{ width:100%; height:100%; }
+.map-filterbar{ position:absolute; top:12px; left:12px; right:12px; z-index:20; display:flex; gap:7px; overflow-x:auto; }
+.map-filter{ background:var(--surface); border:1px solid var(--border); box-shadow:var(--shadow-md); border-radius:20px; padding:8px 14px; font-size:12px; font-weight:700; color:var(--text-soft); white-space:nowrap; }
+.map-filter.active{ background:var(--blue); color:#fff; border-color:var(--blue); }
+.map-wrap{ position:relative; height:360px; flex-shrink:0; }
+.map-legend{ background:var(--surface); border-top:1px solid var(--border); padding:12px 16px 16px; }
+.legend-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:11.5px; color:var(--text-soft); }
+.legend-grid div{ display:flex; align-items:center; gap:6px; }
+.leg-dot{ width:10px;height:10px;border-radius:50%; flex-shrink:0; }
+.nearby-strip{ display:flex; gap:10px; overflow-x:auto; padding:12px 12px; background:var(--surface); border-bottom:1px solid var(--border); }
+.nearby-card{ display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--border); border-radius:13px; padding:9px 12px; min-width:190px; box-shadow:var(--shadow-sm); flex-shrink:0; text-align:left; }
+.nearby-card:active{ background:var(--surface-alt); }
+.nc-ic{ width:34px;height:34px;border-radius:10px; display:flex;align-items:center;justify-content:center; flex-shrink:0; }
+.nc-info{ min-width:0; }
+.nc-info b{ font-size:12.5px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px; }
+.nc-info small{ font-size:11px; color:var(--text-faint); display:block; margin-top:1px; }
+.nc-info .nc-dist{ color:var(--blue); font-weight:700; }
+.popup-card{ font-family:var(--font); min-width:180px; }
+.popup-card b{ display:block; font-size:13px; margin-bottom:3px; }
+.popup-card .pmeta{ font-size:11px; color:var(--text-faint); margin-bottom:8px; }
+
+/* Chat */
+.chat-wrap{ display:flex; flex-direction:column; height:calc(100vh - 190px); }
+.chat-scroll{ flex:1; overflow-y:auto; padding:14px 16px; display:flex; flex-direction:column; gap:12px; }
+.msg{ max-width:82%; padding:11px 13px; border-radius:14px; font-size:13.5px; line-height:1.5; }
+.msg.bot{ align-self:flex-start; background:var(--surface); border:1px solid var(--border); border-bottom-left-radius:4px; }
+.msg.user{ align-self:flex-end; background:var(--blue); color:#fff; border-bottom-right-radius:4px; }
+.msg .tag{ font-size:9.5px; font-weight:800; color:var(--teal); text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
+.chat-inline-btn{ margin-top:9px; background:var(--blue-tint); color:var(--blue); border:none; border-radius:10px; padding:8px 12px; font-weight:700; font-size:12px; }
+.chat-quick{ display:flex; gap:7px; padding:10px 16px; overflow-x:auto; }
+.chat-quick .qp2{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:8px 13px; font-size:12px; font-weight:600; color:var(--blue); white-space:nowrap; }
+.chat-input-bar{ display:flex; align-items:center; gap:8px; padding:10px 12px; border-top:1px solid var(--border); background:var(--surface); }
+.chat-input-bar input{ flex:1; border:1.5px solid var(--border); border-radius:22px; padding:11px 16px; font-size:13.5px; background:var(--surface-alt); }
+.chat-input-bar input:focus{ outline:none; border-color:var(--blue); }
+.round-btn{ width:40px;height:40px;border-radius:50%; border:none; display:flex;align-items:center;justify-content:center; flex-shrink:0; }
+.round-btn.send{ background:var(--blue); color:#fff; }
+.round-btn.mic{ background:var(--surface-alt); color:var(--text-soft); }
+.disclaimer-box{ background:var(--amber-tint); border:1px solid #F1DDB0; color:#7A4F0A; font-size:11.5px; border-radius:10px; padding:9px 11px; line-height:1.5; }
+
+/* Weather */
+.weather-hero{ background:linear-gradient(160deg,#2E5DA8,#1D4FA8); color:#fff; border-radius:var(--radius-lg); padding:20px; box-shadow:var(--shadow-md); }
+.weather-hero .temp{ font-size:44px; font-weight:800; line-height:1; }
+.weather-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px; }
+.wstat{ background:rgba(255,255,255,.14); border-radius:10px; padding:10px; text-align:center; }
+.wstat b{ display:block; font-size:14px; }
+.wstat small{ font-size:10px; color:rgba(255,255,255,.75); }
+.risk-row{ display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:9px; }
+.risk-dot{ width:11px;height:11px;border-radius:50%; flex-shrink:0; }
+.hourly-scroll{ display:flex; gap:12px; overflow-x:auto; padding:4px 2px 8px; }
+.hcell{ text-align:center; min-width:52px; }
+.hcell small{ color:var(--text-faint); font-size:11px; }
+.hcell .hic{ font-size:19px; margin:6px 0; }
+.hcell b{ font-size:12.5px; }
+.day-row{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:13px; }
+.day-row:last-child{ border:none; }
+.ai-insight{ background:var(--teal-tint); border:1px solid #BFE6E2; border-radius:12px; padding:14px; }
+.ai-insight .h{ display:flex; align-items:center; gap:7px; font-weight:800; color:var(--teal); font-size:12.5px; margin-bottom:6px; }
+
+/* Profile */
+.profile-head{ display:flex; flex-direction:column; align-items:center; padding:18px 0 6px; }
+.avatar-lg{ width:78px;height:78px;border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--teal)); display:flex;align-items:center;justify-content:center; color:#fff; font-size:28px; font-weight:800; margin-bottom:10px; }
+.profile-list{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); overflow:hidden; }
+.profile-row{ display:flex; align-items:center; gap:12px; padding:14px; border-bottom:1px solid var(--border); }
+.profile-row:last-child{ border-bottom:none; }
+.profile-row .ic{ width:34px;height:34px;border-radius:9px; background:var(--surface-alt); display:flex;align-items:center;justify-content:center; color:var(--text-soft); flex-shrink:0; }
+.profile-row b{ font-size:13.5px; display:block; }
+.profile-row small{ color:var(--text-faint); font-size:11.5px; }
+.profile-row .chev{ margin-left:auto; color:var(--text-faint); }
+.family-row{ display:flex; align-items:center; gap:12px; padding:13px 14px; border-bottom:1px solid var(--border); }
+.family-row:last-child{ border-bottom:none; }
+.family-avatar{ width:38px;height:38px;border-radius:50%; background:var(--blue-tint); color:var(--blue); display:flex;align-items:center;justify-content:center; font-weight:800; font-size:14px; flex-shrink:0; }
+.family-row b{ font-size:13.5px; display:block; }
+.family-row small{ color:var(--text-faint); font-size:11.5px; }
+.completion-card{ background:linear-gradient(135deg,var(--blue-tint),#fff); border:1px solid var(--border); border-radius:var(--radius-md); padding:16px; text-align:center; }
+.completion-bar{ height:6px; border-radius:4px; background:var(--border); overflow:hidden; margin:10px 0 12px; }
+.completion-fill{ height:100%; background:var(--blue); border-radius:4px; }
+
+/* Missing persons page */
+.registry-banner{ display:flex; align-items:center; gap:11px; background:linear-gradient(135deg,var(--blue-tint),#fff); border:1px solid var(--border); border-radius:var(--radius-md); padding:12px 14px; margin-bottom:16px; }
+.registry-ic{ width:36px;height:36px;border-radius:10px; background:#fff; border:1px solid var(--border); color:var(--blue); display:flex;align-items:center;justify-content:center; flex-shrink:0; }
+.registry-banner b{ font-size:13px; display:block; }
+.registry-banner small{ color:var(--text-faint); font-size:11px; line-height:1.4; display:block; margin-top:2px; }
+.form-group{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px; margin-bottom:14px; box-shadow:var(--shadow-sm); }
+.form-group-title{ font-size:11.5px; font-weight:800; color:var(--blue); text-transform:uppercase; letter-spacing:.04em; margin-bottom:12px; }
+.req{ color:var(--red); }
+.scan-box{ width:100%; background:var(--surface-alt); border:1.5px dashed var(--border-strong); border-radius:12px; padding:16px; text-align:center; }
+.scan-frame{ width:64px;height:64px; margin:0 auto 10px; border-radius:14px; border:2px dashed var(--border-strong); background:#fff; display:flex; align-items:center; justify-content:center; color:var(--text-faint); }
+.scan-frame.has-photo{ border-style:solid; border-color:var(--green); background:var(--green-tint); color:var(--green); }
+.scan-box b{ display:block; font-size:12.5px; color:var(--text-soft); margin-bottom:3px; }
+.scan-box small{ color:var(--text-faint); font-size:11px; }
+.person-card{ width:100%; display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px; margin-bottom:12px; box-shadow:var(--shadow-sm); text-align:left; }
+.person-card:active{ background:var(--surface-alt); }
+.person-avatar{ width:44px;height:44px;border-radius:50%; background:var(--blue-tint); color:var(--blue); display:flex;align-items:center;justify-content:center; font-weight:800; font-size:15px; flex-shrink:0; }
+.person-avatar.reunited{ background:var(--green-tint); color:var(--green); }
+.person-meta{ display:flex; align-items:center; gap:4px; color:var(--text-faint); font-size:11.5px; margin-top:2px; }
+.mini-progress{ display:flex; align-items:center; margin:8px 0 4px; max-width:140px; }
+.mini-dot{ width:7px;height:7px;border-radius:50%; background:var(--border-strong); flex-shrink:0; }
+.mini-dot.done{ background:var(--green); }
+.mini-dot.active{ background:var(--blue); box-shadow:0 0 0 3px var(--blue-tint); }
+.mini-bar{ height:2px; flex:1; background:var(--border-strong); }
+.mini-bar.done{ background:var(--green); }
+
+/* misc */
+.subtle{ color:var(--text-faint); font-size:12.5px; line-height:1.5; }
+.mt8{margin-top:8px;} .mt12{margin-top:12px;} .mt16{margin-top:16px;} .mt20{margin-top:20px;}
+.mb0{margin-bottom:0;}
+.mb16{margin-bottom:16px;}
+.flex-between{ display:flex; align-items:center; justify-content:space-between; }
+hr.sep{ border:none; border-top:1px solid var(--border); margin:16px 0; }
+.offline-banner{ background:var(--amber-tint); border-bottom:1px solid #F1DDB0; color:#7A4F0A; font-size:12px; font-weight:700; padding:8px 16px; display:flex; align-items:center; gap:7px; }
+.sync-btn{ margin-left:auto; background:none; border:none; color:var(--blue); font-weight:800; font-size:11.5px; }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <span class="phone-sidebtn power"></span>
+  <span class="phone-sidebtn vol1"></span>
+  <span class="phone-sidebtn vol2"></span>
+  <div class="phone-screen">
+    <div class="status-bar">
+      <span id="clockTxt">9:41</span>
+      <div class="sb-icons">
+        <svg viewBox="0 0 20 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="0.5"/><rect x="5" y="5" width="3" height="7" rx="0.5"/><rect x="10" y="3" width="3" height="9" rx="0.5"/><rect x="15" y="0" width="3" height="12" rx="0.5"/></svg>
+        <svg viewBox="0 0 20 14" fill="currentColor"><path d="M10 3.2c3 0 5.7 1.2 7.7 3.1l-1.8 1.9c-1.5-1.5-3.6-2.4-5.9-2.4s-4.4.9-5.9 2.4L2.3 6.3C4.3 4.4 7 3.2 10 3.2zm0 4.2c1.7 0 3.3.7 4.4 1.9l-1.9 1.9c-.6-.6-1.5-1-2.5-1s-1.9.4-2.5 1L5.6 9.3c1.1-1.2 2.7-1.9 4.4-1.9zm0 4.4a1.6 1.6 0 110 3.2 1.6 1.6 0 010-3.2z"/></svg>
+        <svg viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="currentColor"/><rect x="2" y="2" width="15" height="8" rx="1.3" fill="currentColor"/><rect x="22.5" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg>
+      </div>
+    </div>
+    <div id="app"></div>
+    <div id="bottomNavHost"></div>
+    <div id="toastHost"></div>
+  </div>
+  <div class="phone-home-indicator"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* =========================================================
+   HOPEFINDER PROTOTYPE — single-file SPA (vanilla JS)
+   ========================================================= */
+
+/* ---------- ICONS (feather-style inline SVG) ---------- */
+const ICN = {
+  menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>',
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>',
+  file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+  bellalt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg>',
+  sos:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  shelter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+  report:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  cloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+  megaphone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.2-3"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19H8.5a2.5 2.5 0 0 1 0-5h7a2.5 2.5 0 0 0 0-5H6"/></svg>',
+  bot:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>',
+  mic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+  edit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  lang:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  contact:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+  hospital:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6"/><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 12v6M9 15h6"/></svg>',
+  wind:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/><path d="M17.7 7.7A2.5 2.5 0 1 1 19.5 12H2"/></svg>',
+  droplet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 8.5 7 13a7 7 0 0 1-14 0c0-4.5 7-13 7-13z"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+};
+function ic(name,size=18){ return `<span style="display:inline-flex;width:${size}px;height:${size}px;flex-shrink:0">${ICN[name]||''}</span>`; }
+
+/* Official HopeFinder logo (embedded) */
+const LOGO_DATA_URI = "data:image/png;base64,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";
+const LOGO_SVG = `<img src="${LOGO_DATA_URI}" alt="HopeFinder" style="width:100%;height:100%;object-fit:contain;padding:2px"/>`;
+const LOGO_IMG_LG = `<img src="${LOGO_DATA_URI}" alt="HopeFinder" style="width:100%;height:100%;object-fit:contain"/>`;
+
+/* ---------- MOCK DATA ---------- */
+const OFFICIAL_ALERT = {
+  id:'AL-2291', type:'Flash Flood Warning', severity:'CRITICAL', authority:'ASDMA (Assam State Disaster Mgmt Authority)',
+  time:'12 min ago', date:'09 Sep 2026, 10:31 AM', areas:['Sector 7','Boragaon','Lalganesh'],
+  desc:'Heavy rainfall and flash flooding reported in Sector 7. Avoid low-lying areas and follow evacuation guidance.',
+  instructions:['Move to higher ground immediately if in a low-lying area.','Avoid crossing flooded roads or bridges on foot or by vehicle.','Keep mobile phones charged and follow official channels.','Report to the nearest relief shelter if evacuation is advised.'],
+  evac:'Evacuate to Community Relief Hub #4 or Khanapara High School if water level continues to rise.'
+};
+const SHELTERS = [
+  {id:'SH-04', name:'Community Relief Hub #4', addr:'Guwahati Central School Campus, Block B', dist:'1.2 km', cap:200, avail:32, status:'OPEN', facilities:['Medical Aid','Food & Water','Power Backup','Wheelchair Access','Pet Zone'], contact:'+91 98765 10004'},
+  {id:'SH-01', name:'Khanapara High School', addr:'NH-37, Khanapara', dist:'1.2 km', cap:250, avail:120, status:'OPEN', facilities:['Food & Water','Medical Aid','Restrooms'], contact:'+91 98765 10001'},
+  {id:'SH-02', name:'Dispur Community Hall', addr:'Last Gate, Dispur', dist:'2.4 km', cap:180, avail:40, status:'OPEN', facilities:['Food & Water','Power Backup'], contact:'+91 98765 10002'},
+  {id:'SH-03', name:'Ganeshguri Relief Camp', addr:'RG Baruah Road', dist:'3.1 km', cap:150, avail:0, status:'FULL', facilities:['Medical Aid','Food & Water'], contact:'+91 98765 10003'},
+];
+const HOSPITALS = [
+  {id:'H1', name:'General Hospital, Guwahati', dist:'0.8 km', beds:42, status:'Open', lat:26.1445, lng:91.7398},
+  {id:'H2', name:'Central Trauma Care #4', dist:'0.8 km', beds:18, status:'Open', lat:26.1478, lng:91.7340},
+];
+const MAP_MARKERS = {
+  incidents:[
+    {id:'INC-001', title:'Flooded Area', loc:'Sector 7 Main Road', severity:'High severity', dist:'2.1 km away', lat:26.1465, lng:91.7365},
+    {id:'INC-002', title:'Waterlogging', loc:'NH-27 near Boragaon', severity:'Moderate severity', dist:'3.4 km away', lat:26.1395, lng:91.7420},
+  ],
+  shelters:[
+    {id:'SH-04', title:'Community Relief Hub #4', loc:'School Campus, Block B', severity:'180 cap. • Open', dist:'1.2 km away', lat:26.1489, lng:91.7392},
+    {id:'SH-01', title:'Khanapara High School', loc:'NH-37, Khanapara', severity:'250 cap. • Open', dist:'1.2 km away', lat:26.1412, lng:91.7290},
+  ],
+  hospitals:[
+    {id:'H1', title:'General Hospital', loc:'Sector 5', severity:'42 beds open', dist:'0.8 km away', lat:26.1445, lng:91.7398},
+    {id:'H2', title:'Central Trauma Care #4', loc:'Sector 3', severity:'18 beds open', dist:'0.9 km away', lat:26.1478, lng:91.7340},
+  ],
+  roadblocks:[
+    {id:'RB-1', title:'Road Block', loc:'NH-27 near Boragaon', severity:'Partially blocked', dist:'3.4 km away', lat:26.1370, lng:91.7300},
+  ]
+};
+const FEED = [
+  {id:'F1', tag:'Official', src:'ASDMA', time:'12 min ago', title:'Flash Flood Warning issued for Guwahati.', body:'Avoid low-lying areas and follow evacuation guidance. Relief teams have been placed on standby across Sector 7 and adjoining wards. Residents are advised to move essential documents and medicines to a safe, dry location.'},
+  {id:'F2', tag:'Local', src:'Guwahati Police', time:'30 min ago', title:'NH-27 partially blocked near Boragaon due to waterlogging.', body:'Commuters are advised to use the Jayanagar bypass until further notice. Traffic police have been deployed at the junction to manage diversions.'},
+  {id:'F3', tag:'Official', src:'District Administration', time:'1 hour ago', title:'Relief shelters are open in affected areas.', body:'Four relief shelters across the district are currently open and admitting residents. Food, drinking water and basic medical aid are available at all centres.'},
+  {id:'F4', tag:'Safety Tips', src:'HopeFinder', time:'2 hours ago', title:'Keep emergency contacts, essential medicines and identity documents ready.', body:'Pack a small emergency bag with a torch, power bank, copies of ID documents, essential medication and drinking water in case evacuation is required at short notice.'},
+  {id:'F5', tag:'Local', src:'ASDMA Volunteers', time:'3 hours ago', title:'Boat rescue teams deployed near Lalganesh low-lying colony.', body:'Two rescue boats are actively assisting residents in waterlogged lanes. Residents needing evacuation can send an SOS through the app or flag down a rescue team.'},
+];
+const ALERTS = [
+  {id:'AL-2291', level:'Critical', src:'ASDMA', time:'12 min ago', loc:'Sector 7', desc:'Flash flood warning — heavy rainfall causing rapid water rise.', instr:'Move to higher ground. Avoid low-lying roads.', read:false},
+  {id:'AL-2288', level:'Warning', src:'District Admin', time:'45 min ago', loc:'Boragaon', desc:'NH-27 partially blocked due to waterlogging.', instr:'Use alternate routes via Jayanagar bypass.', read:false},
+  {id:'AL-2280', level:'Warning', src:'ASDMA', time:'2 hours ago', loc:'Lalganesh', desc:'River level rising steadily near Lalganesh embankment.', instr:'Residents near the riverbank should prepare to evacuate if advised.', read:true},
+  {id:'AL-2270', level:'Information', src:'District Admin', time:'5 hours ago', loc:'Guwahati City', desc:'Relief shelters activated across 4 locations.', instr:'Visit the Shelters tab for nearest open shelter.', read:true},
+];
+const CHAT_QA = [
+  {k:['shelter','nearest','safe'], a:'The nearest available shelter is Khanapara High School, approximately 1.2 km away. It currently has available capacity.', btn:{label:'View Shelter', go:'shelterDetails', arg:'SH-01'}},
+  {k:['risk','area','safe'], a:'Based on current weather and reported incidents, flood risk in Sector 7 is currently HIGH. Please avoid low-lying areas and monitor official alerts.', btn:{label:'View Risk & Weather', go:'risk'}},
+  {k:['what should i do','do now','help me'], a:'If you are in immediate danger, use SEND SOS. Otherwise, move away from low-lying areas, keep your phone charged, and stay tuned to official alerts.', btn:{label:'Send SOS', go:'sos'}},
+  {k:['report','incident'], a:'You can report an incident from the Home screen — tap "Report Incident", add a description, photos and your location, then submit. Our team reviews every report.', btn:{label:'Report Incident', go:'reportStep1'}},
+  {k:['evacuat'], a:'Evacuation routes are being kept clear via High Ridge Road. Avoid the Sector 7 underpass due to 1.8m of active water logging.', btn:{label:'View on Map', go:'map'}},
+  {k:['missing','person','find'], a:'You can report a missing person or search existing reports from the Missing Persons section. Our AI helps cross-check photos against shelter registries, though every match still needs authority verification.', btn:{label:'Missing Persons', go:'missing'}},
+  {k:['hi','hello','hey'], a:'Hello! I can help with emergency guidance, shelters, evacuation, weather risks and disaster safety. What do you need right now?'},
+];
+
+/* ---------- APP STATE ---------- */
+const state = {
+  stack:['home'],
+  offline:false,
+  toast:null,
+  reportForm:{ type:null, desc:'', people:'', medical:false, photo:false, location:null },
+  missingForm:{ name:'', age:'', gender:null, photo:false, lastSeen:'', lastSeenTime:'', clothing:'', notes:'', contact:'', relation:'' },
+  myReports:[
+    {id:'INC-1042', type:'Flood', severity:'HIGH', time:'Today, 09:14 AM', status:'AI Analyzed', people:'8'},
+  ],
+  myMissing:[],
+  sos:{ step:0, id:null, activated:false },
+  chatMsgs:[
+    {who:'bot', tag:'HopeFinder AI', text:"Hello! I'm HopeFinder AI. I can help with emergency guidance, shelters, evacuation, weather risks and disaster safety."}
+  ],
+  alerts: JSON.parse(JSON.stringify(ALERTS)),
+  activeMapFilter:'all',
+  feedTab:'All',
+  missingTab:'report',
+  syncQueue:0,
+  family:[],
+  showAddFamily:false,
+};
+
+function push(screen,arg){ state.stack.push({screen,arg}); render(); window.scrollTo(0,0); }
+function goHome(){ state.stack=[{screen:'home'}]; render(); }
+function goBack(){ if(state.stack.length>1){ state.stack.pop(); } else { state.stack=[{screen:'home'}]; } render(); window.scrollTo(0,0); }
+function setTab(t){ state.stack=[{screen:t}]; render(); }
+function current(){ let top = state.stack[state.stack.length-1]; return typeof top==='string' ? {screen:top} : top; }
+
+function toast(msg, ms=2600){
+  const host=document.getElementById('toastHost');
+  host.innerHTML = `<div class="toast">${msg}</div>`;
+  clearTimeout(window.__toastT);
+  window.__toastT = setTimeout(()=>{ host.innerHTML=''; }, ms);
+}
+
+/* ---------- SHARED PARTIALS ---------- */
+function bottomNav(active){
+  const tabs = [
+    {id:'home', label:'Home', icon:'home'},
+    {id:'map', label:'Map', icon:'map'},
+  ];
+  return `<div class="bottomnav">
+    <button class="nav-item ${active==='home'?'active':''}" data-nav="home">${ic('home',21)}<span>Home</span></button>
+    <button class="nav-item ${active==='map'?'active':''}" data-nav="map">${ic('map',21)}<span>Map</span></button>
+    <button class="nav-sos" data-nav="sos">${ic('sos',22)}</button>
+    <button class="nav-item ${active==='reports'?'active':''}" data-nav="reports">${ic('file',21)}<span>Reports</span></button>
+    <button class="nav-item ${active==='alerts'?'active':''}" data-nav="alerts">${ic('bellalt',21)}<span>Alerts</span></button>
+  </div>`;
+}
+// Note: Profile reached via header icon; nav has 5 slots visually via SOS center per reference screenshots.
+
+function header(title, opts={}){
+  if(opts.back){
+    return `<div class="topbar">
+      <button class="icon-btn" data-back>${ic('back',19)}</button>
+      <div class="header-title">${title}</div>
+      ${opts.right||''}
+    </div>`;
+  }
+  return `<div class="topbar">
+    <button class="icon-btn" data-nav="profile" style="visibility:hidden">${ic('menu',19)}</button>
+    <div class="brand"><div class="brand-badge">${LOGO_SVG}</div><div class="brand-name">HopeFinder</div></div>
+    <button class="icon-btn" data-nav="alerts">${ic('bell',18)}<span class="dot-badge"></span></button>
+    <button class="icon-btn" data-nav="profile">${ic('user',18)}</button>
+  </div>`;
+}
+function locationStrip(){
+  return `<div class="location-strip ${state.offline?'offline':''}">
+    <div class="loc">${ic('pin',14)} Sector 7, Guwahati</div>
+    <div class="status"><span class="status-dot"></span>${state.offline?'Offline Mode':'GPS Accurate • Online'}</div>
+  </div>`;
+}
+function offlineBanner(){
+  if(!state.offline) return '';
+  return `<div class="offline-banner">${ic('cloud',15)} Offline Mode — saved locally, will sync when online ${state.syncQueue>0?`<button class="sync-btn" data-action="tryNow">Try now</button>`:''}</div>`;
+}
+
+/* ---------- SCREENS ---------- */
+function screenHome(){
+  return `<div class="scr">
+    ${header('')}
+    ${locationStrip()}
+    ${offlineBanner()}
+    <div class="content">
+      <div class="alert-banner">
+        <div class="row1">
+          <div class="alert-flag">${ic('report',15)} OFFICIAL ALERT</div>
+          <span class="severity-pill">CRITICAL</span>
+        </div>
+        <h3>Flash Flood Warning</h3>
+        <p>${OFFICIAL_ALERT.desc}</p>
+        <div class="alert-meta">
+          <span>${OFFICIAL_ALERT.authority.split(' ')[0]} • ${OFFICIAL_ALERT.time}</span>
+          <button class="link-btn" data-nav="officialAlert">View Details ${ic('chev',14)}</button>
+        </div>
+      </div>
+
+      <div class="section-title">Emergency Services</div>
+      <div class="grid2">
+        <button class="svc-card" data-nav="map">
+          <div class="svc-ic" style="background:var(--blue-tint);color:var(--blue)">${ic('map',18)}</div>
+          <b>Live Map</b><small>Active incidents</small>
+        </button>
+        <button class="svc-card" data-nav="shelters">
+          <div class="svc-ic" style="background:var(--green-tint);color:var(--green)">${ic('shelter',18)}</div>
+          <b>Safe Shelters</b><small>Nearby locations</small>
+        </button>
+        <button class="svc-card" data-nav="reportStep1">
+          <div class="svc-ic" style="background:var(--amber-tint);color:var(--amber)">${ic('report',18)}</div>
+          <b>Report Incident</b><small>Submit a report</small>
+        </button>
+        <button class="svc-card" data-nav="missing">
+          <div class="svc-ic" style="background:var(--blue-tint);color:var(--blue)">${ic('users',18)}</div>
+          <b>Missing Persons</b><small>Find or report</small>
+        </button>
+        <button class="svc-card" data-nav="risk">
+          <div class="svc-ic" style="background:var(--teal-tint);color:var(--teal)">${ic('cloud',18)}</div>
+          <b>Risk &amp; Weather</b><small>Local radar</small>
+        </button>
+        <button class="svc-card" data-nav="feed">
+          <div class="svc-ic" style="background:var(--red-tint);color:var(--red)">${ic('megaphone',18)}</div>
+          <b>Disaster Feed</b><small>Official alerts</small>
+        </button>
+      </div>
+
+      <div class="section-title">HopeFinder AI</div>
+      <div class="ai-card">
+        <div class="top"><div class="ai-avatar">🤖</div><div><h4>How can I help you? <span class="live-chip">LIVE</span></h4></div></div>
+        <p>Get instant guidance about emergencies, evacuation routes, shelters, disaster safety and your situation.</p>
+        <div class="ai-actions">
+          <button class="btn-white" data-nav="chat">${ic('chat',15)} Chat with HopeFinder</button>
+          <button class="btn-ghost-white" data-action="voice">${ic('mic',15)} Voice</button>
+        </div>
+        <div class="quick-prompts">
+          <button class="qp" data-chatprompt="Nearest safe shelter?">Nearest safe shelter?</button>
+          <button class="qp" data-chatprompt="Is my area at risk?">Is my area at risk?</button>
+          <button class="qp" data-chatprompt="What should I do now?">What should I do now?</button>
+        </div>
+      </div>
+
+      <div class="section-title">Nearby Emergency Resources</div>
+      <div class="res-row">
+        <div class="res-ic" style="background:var(--red-tint);color:var(--red)">${ic('hospital',20)}</div>
+        <div class="info"><b>Central Trauma Care #4</b><small>0.8 km • Emergency Care • Open</small></div>
+        <button class="pill-btn red" data-action="callResource" data-name="Central Trauma Care #4">${ic('phone',13)} Call</button>
+      </div>
+      <div class="res-row">
+        <div class="res-ic" style="background:var(--green-tint);color:var(--green)">${ic('shelter',20)}</div>
+        <div class="info"><b>Community Relief Hub</b><small>1.2 km • 84% Capacity</small></div>
+        <button class="pill-btn outline" data-nav="shelterDetails" data-arg="SH-04">${ic('route',13)} Route</button>
+      </div>
+
+      <div class="section-title">Prototype Controls</div>
+      <div class="card" style="padding:12px 14px; display:flex; align-items:center; justify-content:space-between;">
+        <div><b style="font-size:13px">Simulate offline mode</b><br/><small class="subtle">Toggle to test offline-first behaviour</small></div>
+        <button class="pill-btn ${state.offline?'red':'gray'}" data-action="toggleOffline">${state.offline?'Offline: ON':'Offline: OFF'}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function officialAlertDetails(){
+  const a = OFFICIAL_ALERT;
+  return `<div class="scr">
+    ${header('Alert Details',{back:true})}
+    <div class="content">
+      <div class="alert-banner mt0">
+        <div class="row1"><div class="alert-flag">${ic('report',15)} OFFICIAL ALERT</div><span class="severity-pill">${a.severity}</span></div>
+        <h3>${a.type}</h3>
+        <p>${a.desc}</p>
+      </div>
+      <div class="section-title">Details</div>
+      <div class="card" style="padding:4px 14px;">
+        <div class="info-row"><span>Alert type</span><span>${a.type}</span></div>
+        <div class="info-row"><span>Severity</span><span>${a.severity}</span></div>
+        <div class="info-row"><span>Issuing authority</span><span>${a.authority}</span></div>
+        <div class="info-row"><span>Date / time</span><span>${a.date}</span></div>
+        <div class="info-row"><span>Affected areas</span><span>${a.areas.join(', ')}</span></div>
+      </div>
+      <div class="section-title">Safety Instructions</div>
+      <div class="card" style="padding:14px;">
+        <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.9;color:var(--text-soft)">
+          ${a.instructions.map(i=>`<li>${i}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="section-title">Recommended Evacuation</div>
+      <div class="card" style="padding:14px;">
+        <p class="subtle" style="margin:0">${a.evac}</p>
+      </div>
+      <button class="btn primary mt20" data-nav="map">${ic('map',16)} View on Map</button>
+    </div>
+  </div>`;
+}
+
+/* ---- SOS ---- */
+function screenSOS(){
+  return `<div class="scr">
+    ${header('Emergency SOS',{back:true})}
+    <div class="content">
+      <div class="sos-hero">
+        <div class="sos-ring"><button class="sos-btn-big" data-action="none">${ic('sos',28)}<span>EMERGENCY</span></button></div>
+        <h3 style="margin:6px 0 4px">Send SOS</h3>
+        <p class="subtle">Slide to send an emergency alert to NDRF rescue dispatch and your emergency contacts.</p>
+      </div>
+      <div class="slider-track" id="sosSlider">
+        <div class="slider-fill" id="sosFill" style="width:60px"></div>
+        <div class="slider-label">Slide to Send Emergency Alert →</div>
+        <div class="slider-thumb" id="sosThumb">${ic('sos',20)}</div>
+      </div>
+      <div class="card mt20" style="padding:14px;">
+        <b style="font-size:13px">Before you send</b>
+        <p class="subtle mt8" style="margin-bottom:0">Emergency requests may be verified before rescue dispatch. Only send an SOS for a genuine, immediate emergency.</p>
+      </div>
+    </div>
+  </div>`;
+}
+function initSosSlider(){
+  const track = document.getElementById('sosSlider');
+  if(!track) return;
+  const thumb = document.getElementById('sosThumb');
+  const fill = document.getElementById('sosFill');
+  let dragging=false, startX=0, thumbStart=0;
+  const maxX = ()=> track.clientWidth - thumb.clientWidth - 10;
+  function setPos(x){
+    x = Math.max(0, Math.min(maxX(), x));
+    thumb.style.left = (5+x)+'px';
+    fill.style.width = (x+60)+'px';
+    return x;
+  }
+  function onDown(e){
+    dragging=true;
+    startX = (e.touches? e.touches[0].clientX : e.clientX);
+    thumbStart = parseInt(thumb.style.left||5,10)-5;
+  }
+  function onMove(e){
+    if(!dragging) return;
+    const cx = (e.touches? e.touches[0].clientX : e.clientX);
+    const dx = cx-startX;
+    const x = setPos(thumbStart+dx);
+    if(x >= maxX()-2){
+      dragging=false;
+      onSosComplete();
+    }
+  }
+  function onUp(){
+    if(!dragging) return;
+    dragging=false;
+    const x = parseInt(thumb.style.left||5,10)-5;
+    if(x < maxX()-2){ setPos(0); }
+  }
+  thumb.addEventListener('mousedown',onDown);
+  thumb.addEventListener('touchstart',onDown,{passive:true});
+  window.addEventListener('mousemove',onMove);
+  window.addEventListener('touchmove',onMove,{passive:true});
+  window.addEventListener('mouseup',onUp);
+  window.addEventListener('touchend',onUp);
+}
+function onSosComplete(){
+  push('sosConfirm');
+}
+function screenSosConfirm(){
+  return `<div class="scr">
+    ${header('Confirm SOS',{back:true})}
+    <div class="content">
+      <div class="state-box" style="padding:20px 10px 6px">
+        <div class="ic">🆘</div>
+        <b style="font-size:16px;color:var(--text)">Emergency alert is ready to be sent</b>
+        <p class="subtle">Review the details below before confirming.</p>
+      </div>
+      <div class="card" style="padding:4px 14px;">
+        <div class="info-row"><span>Location</span><span>Sector 7, Guwahati</span></div>
+        <div class="info-row"><span>Time</span><span>${nowStr()}</span></div>
+        <div class="info-row"><span>Network status</span><span style="color:var(--green)">${state.offline?'Offline (will sync)':'Online'}</span></div>
+        <div class="info-row"><span>Disaster condition</span><span>Flash Flood — Sector 7</span></div>
+        <div class="info-row"><span>Emergency contacts</span><span style="color:var(--green)">2 will be notified</span></div>
+      </div>
+      <div class="btn-row mt20">
+        <button class="btn outline" data-back>CANCEL</button>
+        <button class="btn danger" data-action="confirmSos">CONFIRM SOS</button>
+      </div>
+    </div>
+  </div>`;
+}
+function confirmSos(){
+  state.sos.id = 'SOS-'+Math.floor(10000+Math.random()*89999);
+  state.sos.step = state.offline? -1 : 0;
+  state.sos.activated = true;
+  if(state.offline){ state.syncQueue++; toast('Saved locally — will sync when connection is restored.'); }
+  state.stack = state.stack.slice(0, -2);
+  push('sosStatus');
+  if(!state.offline){ startSosProgress(); }
+}
+const SOS_STEPS = ['SOS Submitted','Under Verification','Rescue Team Assigned','Rescue Team En Route','Rescue Completed'];
+function startSosProgress(){
+  clearInterval(window.__sosTimer);
+  window.__sosTimer = setInterval(()=>{
+    if(state.sos.step < SOS_STEPS.length-1){
+      state.sos.step++;
+      if(current().screen==='sosStatus') render();
+      toast(SOS_STEPS[state.sos.step]);
+    } else {
+      clearInterval(window.__sosTimer);
+    }
+  }, 4200);
+}
+function screenSosStatus(){
+  const offlineNote = state.sos.step===-1;
+  return `<div class="scr">
+    ${header('SOS Status',{back:true})}
+    <div class="content">
+      <div class="state-box" style="padding:14px 10px 4px">
+        <div class="ic" style="color:var(--green)">${ic('check',30)}</div>
+        <b style="font-size:16px;color:var(--text)">${offlineNote?'SOS saved locally':'Emergency request submitted'}</b>
+      </div>
+      <div class="card" style="padding:4px 14px;">
+        <div class="info-row"><span>SOS ID</span><span>${state.sos.id}</span></div>
+        <div class="info-row"><span>Location</span><span>Sector 7, Guwahati</span></div>
+        <div class="info-row"><span>Priority</span><span style="color:var(--red)">CRITICAL</span></div>
+        <div class="info-row"><span>Timestamp</span><span>${nowStr()}</span></div>
+        <div class="info-row"><span>Status</span><span>${offlineNote?'Pending sync':SOS_STEPS[state.sos.step]}</span></div>
+      </div>
+      ${offlineNote ? `<div class="disclaimer-box mt16">Saved locally — will sync automatically once connection is restored.</div>` : `
+      <div class="section-title">Rescue Status</div>
+      <div class="card timeline" style="padding:16px 16px 4px;">
+        ${SOS_STEPS.map((s,i)=>{
+          const done = i < state.sos.step;
+          const active = i === state.sos.step;
+          const isLast = i===SOS_STEPS.length-1;
+          return `<div class="tl-item">
+            <div class="tl-dotcol">
+              <div class="tl-dot ${done?'done':active?'active':''}">${done?ic('check',12):''}</div>
+              ${!isLast?`<div class="tl-line ${done?'done':''}"></div>`:''}
+            </div>
+            <div class="tl-body">
+              <b>${s}</b>
+              <small>${done?'Completed':active?'In progress…':'Pending'}</small>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`}
+      <div class="disclaimer-box mt16">Emergency requests may be verified before rescue dispatch. HopeFinder AI does not independently dispatch rescue teams.</div>
+    </div>
+  </div>`;
+}
+function nowStr(){
+  const d = new Date();
+  return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) + ' • ' + d.toLocaleDateString([], {day:'2-digit',month:'short'});
+}
+
+/* ---- SHELTERS ---- */
+function screenShelters(){
+  return `<div class="scr">
+    ${header('Safe Shelters',{back:true})}
+    <div class="content">
+      <p class="subtle mt0">Nearby relief shelters, updated live from NDRF and district administration feeds.</p>
+      ${SHELTERS.map(s=>`
+        <div class="list-card" data-nav="shelterDetails" data-arg="${s.id}">
+          <div class="row-top">
+            <div><b style="font-size:14.5px">${s.name}</b><br/><small class="subtle">${s.dist} away • Capacity ${s.cap}</small></div>
+            <span class="badge ${s.status==='OPEN'?'green':'red'}">${s.status}</span>
+          </div>
+          <div class="flex-between mt12">
+            <small class="subtle">Available: <b style="color:var(--text)">${s.avail}</b> / ${s.cap}</small>
+            <button class="pill-btn blue" data-nav="shelterDetails" data-arg="${s.id}" data-stop>${ic('route',13)} Route</button>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+function screenShelterDetails(id){
+  const s = SHELTERS.find(x=>x.id===id) || SHELTERS[0];
+  return `<div class="scr">
+    ${header('Shelter Details',{back:true})}
+    <div class="content">
+      <div class="card" style="padding:16px;">
+        <div class="flex-between">
+          <b style="font-size:16px">${s.name}</b>
+          <span class="badge ${s.status==='OPEN'?'green':'red'}">${s.status}</span>
+        </div>
+        <p class="subtle" style="margin:6px 0 0">${s.addr} • ${s.dist} away</p>
+        <hr class="sep"/>
+        <div class="info-row"><span>Capacity</span><span>${s.cap}</span></div>
+        <div class="info-row"><span>Available spaces</span><span style="color:${s.avail>0?'var(--green)':'var(--red)'}">${s.avail}</span></div>
+        <div class="info-row"><span>Emergency contact</span><span>${s.contact}</span></div>
+      </div>
+      <div class="section-title">Facilities</div>
+      <div class="chip-select">${s.facilities.map(f=>`<span class="chip selected">${f}</span>`).join('')}</div>
+      <div class="section-title">Location</div>
+      <div class="card" id="shelterMiniMap" style="height:160px; overflow:hidden;"></div>
+      <div class="btn-row mt20">
+        <button class="btn outline" data-action="callResource" data-name="${s.name}">${ic('phone',15)} Call</button>
+        <button class="btn primary" data-action="routeTo" data-name="${s.name}">${ic('route',15)} Get Route</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---- REPORT INCIDENT WIZARD ---- */
+const INCIDENT_TYPES = ['Flood','Earthquake','Fire','Landslide','Road Block','Other'];
+function stepperHTML(step){
+  const labels=['Details','Location','Submit'];
+  let html = '<div class="stepper">';
+  labels.forEach((l,i)=>{
+    const n=i+1;
+    const cls = n<step?'done':n===step?'current':'';
+    html += `<div class="step ${cls}"><div class="circle">${n<step?ic('check',12):n}</div><div class="label">${l}</div></div>`;
+    if(i<labels.length-1) html += `<div class="bar ${n<step?'done':''}"></div>`;
+  });
+  html += '</div>';
+  return html;
+}
+function screenReportStep1(){
+  const f = state.reportForm;
+  return `<div class="scr">
+    ${header('Report Incident',{back:true})}
+    <div class="content">
+      ${stepperHTML(1)}
+      <div class="section-title" style="margin-top:0">Incident type</div>
+      <div class="chip-select">
+        ${INCIDENT_TYPES.map(t=>`<button class="chip ${f.type===t?'selected':''}" data-action="setIncType" data-val="${t}">${t}</button>`).join('')}
+      </div>
+      <div class="field mt20">
+        <label>What are you seeing?</label>
+        <textarea id="descInput" placeholder="Describe the situation…">${f.desc}</textarea>
+      </div>
+      <div class="field">
+        <label>Photo / video evidence</label>
+        <button class="upload-box" style="width:100%;border:1.5px dashed var(--border-strong)" data-action="mockUpload">
+          ${ic('camera',22)}<b>${f.photo? '1 photo attached ✓' : 'Tap to upload photo or video'}</b>
+        </button>
+      </div>
+      <div class="field">
+        <label>Number of people affected</label>
+        <input type="number" id="peopleInput" placeholder="e.g. 8" value="${f.people}"/>
+      </div>
+      <div class="field">
+        <label style="display:flex;align-items:center;justify-content:space-between">Medical emergency involved?
+          <button class="pill-btn ${f.medical?'red':'gray'}" data-action="toggleMedical">${f.medical?'Yes':'No'}</button>
+        </label>
+      </div>
+      <button class="btn primary mt12" data-action="reportStep1Next">Continue ${ic('chev',15)}</button>
+    </div>
+  </div>`;
+}
+function screenReportStep2(){
+  const f = state.reportForm;
+  return `<div class="scr">
+    ${header('Report Incident',{back:true})}
+    <div class="content">
+      ${stepperHTML(2)}
+      <div class="section-title" style="margin-top:0">Location</div>
+      <button class="btn outline" data-action="useCurrentLocation">${ic('pin',16)} Use Current Location</button>
+      <div class="card mt16" style="padding:14px; text-align:center;">
+        ${f.location ? `<div style="color:var(--green);font-weight:700;font-size:13.5px">${ic('check',15)} Location captured: ${f.location}</div>` : `<span class="subtle">No location selected yet. Tap "Use Current Location" or select on the map below.</span>`}
+      </div>
+      <div class="section-title">Or select on map</div>
+      <div class="card" id="reportMiniMap" style="height:180px;"></div>
+      <button class="btn primary mt20" data-action="reportStep2Next" ${!f.location?'disabled':''}>Continue ${ic('chev',15)}</button>
+    </div>
+  </div>`;
+}
+function screenReportStep3(){
+  const f = state.reportForm;
+  return `<div class="scr">
+    ${header('Report Incident',{back:true})}
+    <div class="content">
+      ${stepperHTML(3)}
+      <div class="section-title" style="margin-top:0">Review Report</div>
+      <div class="card" style="padding:4px 14px;">
+        <div class="info-row"><span>Incident type</span><span>${f.type||'—'}</span></div>
+        <div class="info-row"><span>Description</span><span style="text-align:right;max-width:60%">${f.desc||'—'}</span></div>
+        <div class="info-row"><span>People affected</span><span>${f.people||'—'}</span></div>
+        <div class="info-row"><span>Medical emergency</span><span>${f.medical?'Yes':'No'}</span></div>
+        <div class="info-row"><span>Location</span><span>${f.location||'—'}</span></div>
+        <div class="info-row"><span>Photo attached</span><span>${f.photo?'Yes':'No'}</span></div>
+      </div>
+      <div class="disclaimer-box mt16">Your report will be analysed by HopeFinder AI for severity and priority, then verified by an authorised responder.</div>
+      <button class="btn danger mt20" data-action="submitIncident">Submit Incident</button>
+    </div>
+  </div>`;
+}
+function screenReportStatus(){
+  const r = state.myReports[0];
+  return `<div class="scr">
+    ${header('Report Submitted',{back:true})}
+    <div class="content">
+      <div class="state-box" style="padding:14px 10px 4px">
+        <div class="ic" style="color:var(--green)">${ic('check',30)}</div>
+        <b style="font-size:16px;color:var(--text)">Report submitted</b>
+      </div>
+      <div class="card" style="padding:4px 14px;">
+        <div class="info-row"><span>Incident ID</span><span>${r.id}</span></div>
+        <div class="info-row"><span>Location</span><span>Sector 7, Guwahati</span></div>
+        <div class="info-row"><span>Incident type</span><span>${r.type}</span></div>
+        <div class="info-row"><span>Severity</span><span style="color:var(--red)">${r.severity}</span></div>
+        <div class="info-row"><span>Submitted</span><span>${r.time}</span></div>
+      </div>
+      <div class="section-title">🤖 HopeFinder AI Analysis</div>
+      <div class="card" style="padding:14px;">
+        <div class="info-row"><span>Incident</span><span>Flash Flood</span></div>
+        <div class="info-row"><span>Severity</span><span style="color:var(--red)">HIGH</span></div>
+        <div class="info-row"><span>People affected</span><span>${r.people}</span></div>
+        <div class="info-row"><span>Recommended priority</span><span style="color:var(--red)">CRITICAL</span></div>
+        <div class="info-row" style="border:none"><span>Recommended action</span><span style="text-align:right;max-width:55%">Immediate authority verification and rescue assessment</span></div>
+      </div>
+      <div class="disclaimer-box mt16">AI-assisted assessment — final emergency decisions require authorised verification.</div>
+      <div class="section-title">Status</div>
+      <div class="card timeline" style="padding:16px 16px 4px;">
+        ${['Reported','AI Analyzed','Verification Pending'].map((s,i)=>`
+          <div class="tl-item">
+            <div class="tl-dotcol">
+              <div class="tl-dot ${i<2?'done':'active'}">${i<2?ic('check',12):''}</div>
+              ${i<2?`<div class="tl-line done"></div>`:''}
+            </div>
+            <div class="tl-body"><b>${s}</b><small>${i<2?'Completed':'In progress…'}</small></div>
+          </div>`).join('')}
+      </div>
+      <button class="btn outline mt12" data-nav="reports">Back to Reports</button>
+    </div>
+  </div>`;
+}
+function screenReportsList(){
+  return `<div class="scr">
+    ${header('')}
+    ${locationStrip()}
+    <div class="content">
+      <div class="flex-between">
+        <div class="section-title" style="margin-top:0">My Incident Reports</div>
+        <button class="pill-btn blue" data-nav="reportStep1">+ New</button>
+      </div>
+      ${state.myReports.length===0 ? emptyState('📄','No reports yet','Reports you submit will appear here.') :
+      state.myReports.map(r=>`
+        <div class="list-card">
+          <div class="row-top">
+            <div><b style="font-size:14px">${r.id}</b><br/><small class="subtle">${r.type} • ${r.time}</small></div>
+            <span class="badge red">${r.severity}</span>
+          </div>
+          <div class="flex-between mt12">
+            <small class="subtle">Status: <b style="color:var(--text)">${r.status}</b></small>
+            <small class="subtle">People affected: ${r.people}</small>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+function emptyState(iconTxt,title,sub){
+  return `<div class="state-box"><div class="ic">${iconTxt}</div><b>${title}</b><span>${sub}</span></div>`;
+}
+
+/* ---- MISSING PERSONS ---- */
+function screenMissing(){
+  const tab = state.missingTab;
+  return `<div class="scr">
+    ${header('Missing Persons',{back:true})}
+    <div class="content">
+      <div class="registry-banner">
+        <div class="registry-ic">${ic('shield',18)}</div>
+        <div style="flex:1">
+          <b>NDRF National Registry</b>
+          <small>Reports are cross-checked across relief shelters using AI-assisted matching</small>
+        </div>
+        <span class="badge blue" style="align-self:flex-start">AI Ready</span>
+      </div>
+      <div class="tabs">
+        <button class="tab ${tab==='report'?'active':''}" data-action="missingTab" data-val="report">Report</button>
+        <button class="tab ${tab==='search'?'active':''}" data-action="missingTab" data-val="search">Search</button>
+        <button class="tab ${tab==='mine'?'active':''}" data-action="missingTab" data-val="mine">My Reports</button>
+      </div>
+      ${tab==='report'? missingReportPanel() : tab==='search'? missingSearchPanel() : missingMinePanel()}
+    </div>
+  </div>`;
+}
+function formGroup(title,inner){
+  return `<div class="form-group">
+    <div class="form-group-title">${title}</div>
+    ${inner}
+  </div>`;
+}
+function missingReportPanel(){
+  const f = state.missingForm;
+  return `
+    ${formGroup('Photo & Identification', `
+      <button class="scan-box" data-action="mockUploadMissing">
+        <div class="scan-frame ${f.photo?'has-photo':''}">
+          ${f.photo ? `<div class="scan-check">${ic('check',22)}</div>` : ic('camera',24)}
+        </div>
+        <b>${f.photo?'Photo attached — ready for AI matching ✓':'Tap to upload a clear photo'}</b>
+        <small>Used only for AI-assisted matching against shelter registries</small>
+      </button>
+      <div class="field mt12 mb0"><label>Full name <span class="req">*</span></label><input type="text" id="mName" placeholder="Full name" value="${f.name}"/></div>
+      <div class="btn-row">
+        <div class="field" style="flex:1"><label>Age</label><input type="number" id="mAge" placeholder="Age" value="${f.age}"/></div>
+        <div class="field" style="flex:1">
+          <label>Gender</label>
+          <select id="mGender">
+            <option value="" ${!f.gender?'selected':''} disabled>Select</option>
+            <option ${f.gender==='Male'?'selected':''}>Male</option>
+            <option ${f.gender==='Female'?'selected':''}>Female</option>
+            <option ${f.gender==='Child'?'selected':''}>Child</option>
+          </select>
+        </div>
+      </div>
+    `)}
+
+    ${formGroup('Last Seen Details', `
+      <div class="field"><label>Last seen location</label><input type="text" id="mLoc" placeholder="e.g. Sector 7 Bridge" value="${f.lastSeen}"/></div>
+      <div class="field"><label>Last seen date / time</label><input type="text" id="mTime" placeholder="e.g. Today, 8:30 AM" value="${f.lastSeenTime}"/></div>
+      <div class="field mb0"><label>Clothing description</label><input type="text" id="mCloth" placeholder="e.g. Blue shirt, dark trousers" value="${f.clothing}"/></div>
+    `)}
+
+    ${formGroup('Additional Information', `
+      <div class="field mb0"><label>Distinguishing details</label><textarea id="mNotes" placeholder="Scars, marks, medical conditions, anything that helps identify them…">${f.notes}</textarea></div>
+    `)}
+
+    ${formGroup('Your Contact Details', `
+      <div class="btn-row mb0">
+        <div class="field" style="flex:1;margin-bottom:0"><label>Your relation</label><input type="text" id="mRelation" placeholder="e.g. Father" value="${f.relation}"/></div>
+        <div class="field" style="flex:1;margin-bottom:0"><label>Phone number</label><input type="tel" id="mContact" placeholder="Phone number" value="${f.contact}"/></div>
+      </div>
+    `)}
+
+    <div class="disclaimer-box mt8 mb16">Photos and details are used for AI-assisted matching only and shared exclusively with authorised relief and rescue teams.</div>
+    <button class="btn danger" data-action="submitMissing">${ic('users',16)} Submit Missing Person Report</button>
+  `;
+}
+function missingSearchPanel(){
+  return `
+    <div class="field"><input type="text" placeholder="Search by name, ID or last-seen area…"/></div>
+    ${MISSING_SAMPLES.map(p=>`
+      <button class="person-card" data-nav="missingMatch">
+        <div class="person-avatar ${p.status==='Reunited'?'reunited':''}">${p.name[0]}</div>
+        <div style="flex:1;min-width:0">
+          <b style="font-size:13.5px">${p.name}</b>
+          <div class="person-meta">${ic('pin',12)} <span>Last seen ${p.loc}</span></div>
+          <div class="person-meta"><span>${p.age} yrs</span></div>
+        </div>
+        <div style="align-items:flex-end;display:flex;flex-direction:column;gap:8px">
+          <span class="badge ${p.status==='Reunited'?'green':'amber'}">${p.status}</span>
+          ${ic('chev',16)}
+        </div>
+      </button>`).join('')}
+  `;
+}
+const MISSING_SAMPLES = [
+  {name:'Aarav Sharma', age:8, loc:'Sector 7 Bridge', status:'Search Active'},
+  {name:'Deepa Boro', age:34, loc:'Boragaon Relief Camp', status:'Reunited'},
+  {name:'Rohit Das', age:61, loc:'Lalganesh Colony', status:'Search Active'},
+];
+function missingMinePanel(){
+  if(state.myMissing.length===0) return emptyState('👤','No reports filed','Missing person reports you file will appear here with live match status.');
+  return state.myMissing.map(m=>`
+    <button class="person-card" data-nav="missingMatch" style="align-items:flex-start">
+      <div class="person-avatar">${ic('users',18)}</div>
+      <div style="flex:1;min-width:0">
+        <b style="font-size:14px">${m.id}</b>
+        <div class="person-meta"><span>${m.name} • Filed ${m.time}</span></div>
+        <div class="mini-progress">
+          <div class="mini-dot done"></div><div class="mini-bar done"></div>
+          <div class="mini-dot active"></div><div class="mini-bar"></div>
+          <div class="mini-dot"></div>
+        </div>
+        <small class="subtle">AI matching in progress…</small>
+      </div>
+      <span class="badge amber">${m.status==='AI Matching in Progress'?'Matching':m.status}</span>
+    </button>`).join('');
+}
+function screenMissingMatch(){
+  return `<div class="scr">
+    ${header('AI Matching',{back:true})}
+    <div class="content">
+      <div class="section-title" style="margin-top:0">Matching Workflow</div>
+      <div class="card timeline" style="padding:16px 16px 4px;">
+        ${['Missing Person Photo','AI Face Matching','Potential Match','Location / Details Cross-Check','Authority Verification','Family Notification'].map((s,i)=>`
+          <div class="tl-item">
+            <div class="tl-dotcol"><div class="tl-dot ${i<3?'done':i===3?'active':''}">${i<3?ic('check',12):''}</div>${i<5?`<div class="tl-line ${i<3?'done':''}"></div>`:''}</div>
+            <div class="tl-body"><b>${s}</b><small>${i<3?'Completed':i===3?'In progress…':'Pending'}</small></div>
+          </div>`).join('')}
+      </div>
+      <div class="section-title">🤖 Potential Match Found</div>
+      <div class="card" style="padding:16px;">
+        <div class="flex-between">
+          <b style="font-size:15px">Match Confidence</b>
+          <span class="badge green">92%</span>
+        </div>
+        <hr class="sep"/>
+        <div class="info-row"><span>Location</span><span>Community Relief Center</span></div>
+        <div class="info-row"><span>Distance</span><span>1.4 km away</span></div>
+        <div class="info-row" style="border:none"><span>Status</span><span style="color:var(--amber)">⚠ Requires Verification</span></div>
+      </div>
+      <div class="disclaimer-box mt16">This is an AI-assisted potential match, not a confirmed identity. Final confirmation requires authorised verification.</div>
+      <div class="btn-row mt16">
+        <button class="btn outline" data-action="reportIncorrectMatch">Report Incorrect Match</button>
+        <button class="btn primary" data-action="viewMatch">View Match</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---- LIVE MAP ---- */
+let leafletMap=null, layerGroups={};
+function nearbyStrip(){
+  const items = [
+    ...MAP_MARKERS.hospitals.map(h=>({...h,cat:'hospitals'})),
+    ...MAP_MARKERS.shelters.map(s=>({...s,cat:'shelters'})),
+  ].sort((a,b)=> parseFloat(a.dist) - parseFloat(b.dist));
+  return `<div class="nearby-strip">
+    ${items.map(m=>`
+      <button class="nearby-card" data-action="focusMarker" data-cat="${m.cat}" data-id="${m.id}">
+        <div class="nc-ic" style="background:${m.cat==='hospitals'?'var(--red-tint)':'var(--blue-tint)'};color:${m.cat==='hospitals'?'var(--red)':'var(--blue)'}">${ic(m.cat==='hospitals'?'hospital':'shelter',17)}</div>
+        <div class="nc-info"><b>${m.title}</b><small><span class="nc-dist">${m.dist}</span> • ${m.severity}</small></div>
+      </button>`).join('')}
+  </div>`;
+}
+function screenMap(){
+  return `<div class="scr">
+    ${header('Live Disaster Map',{back: true})}
+    <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px 0">
+      <div class="section-title" style="margin:2px 0 0">Nearby Hospitals &amp; Shelters</div>
+    </div>
+    ${nearbyStrip()}
+    <div class="map-wrap">
+      <div class="map-filterbar">
+        ${['all','incidents','shelters','hospitals','roadblocks'].map(f=>`
+          <button class="map-filter ${state.activeMapFilter===f?'active':''}" data-action="mapFilter" data-val="${f}">${f==='all'?'All':f==='roadblocks'?'Road Blocks':f[0].toUpperCase()+f.slice(1)}</button>
+        `).join('')}
+      </div>
+      <div id="leafletMap"></div>
+    </div>
+    <div class="map-legend">
+      <div class="legend-grid">
+        <div><span class="leg-dot" style="background:var(--red)"></span>Hazard danger zone</div>
+        <div><span class="leg-dot" style="background:var(--green)"></span>Certified safe zone</div>
+        <div><span class="leg-dot" style="background:var(--red)"></span>Emergency hospitals (H)</div>
+        <div><span class="leg-dot" style="background:var(--blue)"></span>Operational shelters (S)</div>
+        <div><span class="leg-dot" style="background:var(--amber)"></span>Road blocks (R)</div>
+        <div><span class="leg-dot" style="background:var(--teal)"></span>Your GPS position</div>
+      </div>
+    </div>
+  </div>`;
+}
+function initMap(){
+  const el = document.getElementById('leafletMap');
+  if(!el || typeof L==='undefined') return;
+  if(leafletMap){ leafletMap.remove(); leafletMap=null; }
+  leafletMap = L.map(el,{zoomControl:false}).setView([26.1445,91.7362],14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:19, attribution:'© OpenStreetMap' }).addTo(leafletMap);
+  L.control.zoom({position:'bottomright'}).addTo(leafletMap);
+
+  // Flood danger zone
+  L.circle([26.1465,91.7375],{radius:900,color:'#D8332B',weight:2,fillColor:'#D8332B',fillOpacity:0.13}).addTo(leafletMap)
+    .bindTooltip('Danger Zone • Flood Level 2', {permanent:false});
+  // Safe zone
+  L.circle([26.1395,91.7300],{radius:600,color:'#1C8A4B',weight:2,fillColor:'#1C8A4B',fillOpacity:0.12}).addTo(leafletMap)
+    .bindTooltip('Certified Safe Zone', {permanent:false});
+  // User location
+  L.circleMarker([26.1440,91.7350],{radius:8,color:'#0E8A82',weight:3,fillColor:'#fff',fillOpacity:1}).addTo(leafletMap)
+    .bindPopup('<div class="popup-card"><b>You are here</b><div class="pmeta">GPS accurate · Safe zone</div></div>');
+
+  function dot(color,label){ return L.divIcon({className:'', html:`<div style="width:28px;height:28px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12.5px;font-weight:800">${label}</div>`, iconSize:[28,28], iconAnchor:[14,14]}); }
+  const colors = {incidents:'#D8332B', shelters:'#1D4FA8', hospitals:'#0E8A82', roadblocks:'#C9740A'};
+  const labels = {incidents:'!', shelters:'S', hospitals:'H', roadblocks:'R'};
+  layerGroups = {};
+  Object.keys(MAP_MARKERS).forEach(cat=>{
+    const grp = L.layerGroup();
+    MAP_MARKERS[cat].forEach(m=>{
+      const mk = L.marker([m.lat,m.lng],{icon:dot(colors[cat],labels[cat])});
+      mk.bindPopup(`<div class="popup-card"><b>${m.title}</b><div class="pmeta">${m.loc} • ${m.severity} • ${m.dist}</div><button class="chat-inline-btn" onclick="window.__viewMarker && window.__viewMarker('${cat}','${m.id}')">View Incident</button></div>`);
+      grp.addLayer(mk);
+    });
+    layerGroups[cat]=grp;
+    grp.addTo(leafletMap);
+  });
+  window.__viewMarker = function(cat,id){
+    toast('Opening incident details…');
+  };
+  applyMapFilter();
+}
+function applyMapFilter(){
+  if(!leafletMap) return;
+  const f = state.activeMapFilter;
+  Object.keys(layerGroups).forEach(cat=>{
+    if(f==='all' || f===cat){ if(!leafletMap.hasLayer(layerGroups[cat])) layerGroups[cat].addTo(leafletMap); }
+    else { if(leafletMap.hasLayer(layerGroups[cat])) leafletMap.removeLayer(layerGroups[cat]); }
+  });
+}
+function initMiniMap(elId, coords, color){
+  const el = document.getElementById(elId);
+  if(!el || typeof L==='undefined') return;
+  const m = L.map(el,{zoomControl:false, dragging:true, scrollWheelZoom:false}).setView(coords,15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(m);
+  L.circleMarker(coords,{radius:9,color:color||'#1D4FA8',weight:3,fillColor:'#fff',fillOpacity:1}).addTo(m);
+  setTimeout(()=>m.invalidateSize(),80);
+  m.on('click',(e)=>{
+    if(elId==='reportMiniMap'){
+      state.reportForm.location = e.latlng.lat.toFixed(4)+', '+e.latlng.lng.toFixed(4);
+      render();
+    }
+  });
+}
+
+/* ---- RISK & WEATHER ---- */
+function screenRisk(){
+  return `<div class="scr">
+    ${header('Risk & Weather',{back:true})}
+    <div class="content">
+      <div class="weather-hero">
+        <div class="flex-between">
+          <div>${ic('pin',13)} <small style="opacity:.85">Sector 7, Guwahati</small></div>
+          <small style="opacity:.85">Updated 3 min ago</small>
+        </div>
+        <div class="temp mt8">26°C</div>
+        <div style="opacity:.9;font-size:13px">Heavy Rain</div>
+        <div class="weather-stats">
+          <div class="wstat"><b>28°C</b><small>Feels like</small></div>
+          <div class="wstat"><b>92%</b><small>Humidity</small></div>
+          <div class="wstat"><b>12 km/h</b><small>Wind</small></div>
+        </div>
+      </div>
+
+      <div class="section-title">Risk Indicators</div>
+      <div class="risk-row"><span class="risk-dot" style="background:var(--red)"></span><b style="flex:1;font-size:13px">Flood Risk</b><span class="badge red">HIGH</span></div>
+      <div class="risk-row"><span class="risk-dot" style="background:var(--amber)"></span><b style="flex:1;font-size:13px">Landslide Risk</b><span class="badge amber">MODERATE</span></div>
+      <div class="risk-row"><span class="risk-dot" style="background:var(--blue)"></span><b style="flex:1;font-size:13px">River Level</b><span class="badge blue">RISING</span></div>
+      <div class="risk-row"><span class="risk-dot" style="background:var(--amber)"></span><b style="flex:1;font-size:13px">Road Conditions</b><span class="badge amber">PARTIALLY BLOCKED</span></div>
+
+      <div class="section-title">Hourly Forecast</div>
+      <div class="card" style="padding:10px 6px;">
+        <div class="hourly-scroll">
+          ${[['Now','🌧️','26°'],['1PM','🌧️','26°'],['2PM','⛈️','25°'],['3PM','⛈️','25°'],['4PM','🌦️','26°'],['5PM','🌦️','27°'],['6PM','☁️','26°']].map(h=>`
+            <div class="hcell"><small>${h[0]}</small><div class="hic">${h[1]}</div><b>${h[2]}</b></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="section-title">7-Day Forecast</div>
+      <div class="card" style="padding:4px 14px;">
+        ${[['Today','⛈️','24° / 27°'],['Thu','🌧️','23° / 26°'],['Fri','🌦️','24° / 28°'],['Sat','☁️','25° / 29°'],['Sun','🌤️','25° / 30°'],['Mon','☀️','26° / 31°'],['Tue','🌤️','26° / 30°']].map(d=>`
+          <div class="day-row"><span>${d[0]}</span><span>${d[1]}</span><span>${d[2]}</span></div>`).join('')}
+      </div>
+
+      <div class="section-title">AI Risk Insight</div>
+      <div class="ai-insight">
+        <div class="h">🤖 AI RISK INSIGHT</div>
+        <p style="font-size:13px;margin:0 0 8px;color:var(--text)">Based on current weather and reported incidents, flood risk in your area is currently <b>HIGH</b>.</p>
+        <div class="disclaimer-box" style="background:transparent;border:none;padding:0;color:#0E6E67">AI-generated risk insight should be considered alongside official warnings.</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---- DISASTER FEED ---- */
+function screenFeed(){
+  const tab = state.feedTab;
+  const items = FEED.filter(f=> tab==='All' || f.tag===tab);
+  return `<div class="scr">
+    ${header('Disaster Feed',{back:true})}
+    <div class="content">
+      <div class="tabs">
+        ${['All','Official','Local','Safety Tips'].map(t=>`<button class="tab ${tab===t?'active':''}" data-action="feedTab" data-val="${t}">${t}</button>`).join('')}
+      </div>
+      ${items.length===0? emptyState('📰','No updates','No posts in this category yet.') :
+      items.map(f=>`
+        <div class="list-card" data-nav="feedDetail" data-arg="${f.id}">
+          <div class="row-top">
+            <span class="badge ${f.tag==='Official'?'blue':f.tag==='Safety Tips'?'green':'gray'}">${f.tag}</span>
+            <small class="subtle">${f.time}</small>
+          </div>
+          <b style="font-size:13.5px;display:block;margin:8px 0 4px">${f.src}</b>
+          <p style="margin:0;font-size:13px;color:var(--text-soft);line-height:1.5">${f.title}</p>
+          <button class="link-btn mt8" style="color:var(--blue)" data-nav="feedDetail" data-arg="${f.id}" data-stop>View Details ${ic('chev',13)}</button>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+function screenFeedDetail(id){
+  const f = FEED.find(x=>x.id===id) || FEED[0];
+  return `<div class="scr">
+    ${header('Update',{back:true})}
+    <div class="content">
+      <span class="badge ${f.tag==='Official'?'blue':f.tag==='Safety Tips'?'green':'gray'}">${f.tag}</span>
+      <h3 style="margin:10px 0 4px">${f.title}</h3>
+      <small class="subtle">${f.src} • ${f.time}</small>
+      <p class="mt16" style="font-size:14px;line-height:1.7;color:var(--text)">${f.body}</p>
+      <button class="btn outline mt12" data-nav="map">${ic('map',15)} View related area on map</button>
+    </div>
+  </div>`;
+}
+
+/* ---- AI CHATBOT ---- */
+function screenChat(){
+  return `<div class="scr">
+    ${header('HopeFinder AI',{back:true})}
+    <div class="chat-wrap">
+      <div class="chat-scroll" id="chatScroll">
+        ${state.chatMsgs.map(m=>`
+          <div class="msg ${m.who}">
+            ${m.who==='bot'?`<div class="tag">🤖 ${m.tag||'HopeFinder AI'}</div>`:''}
+            ${m.text}
+            ${m.btn?`<button class="chat-inline-btn" data-action="chatBtn" data-go="${m.btn.go}" data-arg="${m.btn.arg||''}">${m.btn.label}</button>`:''}
+          </div>`).join('')}
+      </div>
+      <div class="chat-quick">
+        <button class="qp2" data-chatprompt="Nearest safe shelter?">Nearest safe shelter?</button>
+        <button class="qp2" data-chatprompt="Is my area at risk?">Is my area at risk?</button>
+        <button class="qp2" data-chatprompt="What should I do now?">What should I do now?</button>
+        <button class="qp2" data-chatprompt="How do I report an incident?">How do I report an incident?</button>
+      </div>
+      <div class="chat-input-bar">
+        <button class="round-btn mic" data-action="voice">${ic('mic',18)}</button>
+        <input type="text" id="chatInput" placeholder="Ask emergency question…" />
+        <button class="round-btn send" data-action="sendChat">${ic('send',17)}</button>
+      </div>
+    </div>
+  </div>`;
+}
+function sendChatMessage(text){
+  if(!text || !text.trim()) return;
+  state.chatMsgs.push({who:'user', text});
+  const lower = text.toLowerCase();
+  let match = CHAT_QA.find(qa=>qa.k.some(k=>lower.includes(k)));
+  const reply = match ? match.a : "I can help with shelters, evacuation routes, weather risk and incident reporting. If you are in immediate danger, use SEND SOS or contact emergency services directly.";
+  state.chatMsgs.push({who:'bot', tag:'HopeFinder AI', text:reply, btn: match? match.btn : null});
+  render();
+  const sc = document.getElementById('chatScroll');
+  if(sc) sc.scrollTop = sc.scrollHeight;
+}
+
+/* ---- ALERTS ---- */
+function screenAlerts(){
+  return `<div class="scr">
+    ${header('')}
+    ${locationStrip()}
+    <div class="content">
+      <div class="section-title" style="margin-top:0">Alerts</div>
+      ${state.alerts.length===0? emptyState('🔔','No alerts','You are all caught up.') :
+      state.alerts.map(a=>`
+        <div class="list-card" style="${a.read?'opacity:.6':''}" data-nav="alertDetails" data-arg="${a.id}">
+          <div class="row-top">
+            <span class="badge ${a.level==='Critical'?'red':a.level==='Warning'?'amber':'blue'}">${a.level}</span>
+            <small class="subtle">${a.time}</small>
+          </div>
+          <b style="font-size:13.5px;display:block;margin:8px 0 2px">${a.desc}</b>
+          <small class="subtle">${a.src} • ${a.loc}</small>
+          ${!a.read?`<button class="link-btn mt8" data-action="markRead" data-arg="${a.id}" data-stop>Mark as read</button>`:''}
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+function screenAlertDetails(id){
+  const a = state.alerts.find(x=>x.id===id) || state.alerts[0];
+  return `<div class="scr">
+    ${header('Alert Details',{back:true})}
+    <div class="content">
+      <span class="badge ${a.level==='Critical'?'red':a.level==='Warning'?'amber':'blue'}">${a.level}</span>
+      <h3 style="margin:10px 0 4px">${a.desc}</h3>
+      <small class="subtle">${a.src} • ${a.time} • ${a.loc}</small>
+      <div class="section-title">Safety Instructions</div>
+      <div class="card" style="padding:14px;"><p class="subtle" style="margin:0">${a.instr}</p></div>
+      <button class="btn primary mt20" data-nav="map">${ic('map',15)} View on Map</button>
+    </div>
+  </div>`;
+}
+
+/* ---- PROFILE ---- */
+function familySection(){
+  const fam = state.family;
+  const pct = Math.min(100, fam.length===0? 40 : 40 + Math.min(fam.length,3)*20);
+  let html = `<div class="section-title" style="margin-top:22px">Family &amp; Emergency Contacts</div>`;
+
+  if(fam.length===0 && !state.showAddFamily){
+    html += `<div class="completion-card">
+      <b style="font-size:14px">Complete your profile</b>
+      <div class="completion-bar"><div class="completion-fill" style="width:${pct}%"></div></div>
+      <p class="subtle" style="margin:0 0 12px">Add family members' names and phone numbers so responders and HopeFinder AI can reach them for you during an emergency.</p>
+      <button class="btn primary" data-action="toggleAddFamily">${ic('users',16)} Add Family Member</button>
+    </div>`;
+  } else {
+    if(fam.length>0){
+      html += `<div class="profile-list">
+        ${fam.map((m,i)=>`
+          <div class="family-row">
+            <div class="family-avatar">${(m.name||'?')[0].toUpperCase()}</div>
+            <div style="flex:1;min-width:0"><b>${m.name}</b><small>${m.relation? m.relation+' • ':''}${m.phone}</small></div>
+            <button class="pill-btn gray" data-action="removeFamily" data-idx="${i}">Remove</button>
+          </div>`).join('')}
+      </div>`;
+    }
+    if(!state.showAddFamily){
+      html += `<button class="btn outline mt12" data-action="toggleAddFamily">${ic('users',15)} Add ${fam.length? 'Another' : 'a'} Family Member</button>`;
+    }
+  }
+
+  if(state.showAddFamily){
+    html += `<div class="card mt12" style="padding:14px;">
+      <div class="field"><label>Full name</label><input type="text" id="famName" placeholder="Full name"/></div>
+      <div class="btn-row">
+        <div class="field" style="flex:1"><label>Relation</label><input type="text" id="famRelation" placeholder="e.g. Mother, Brother"/></div>
+        <div class="field" style="flex:1"><label>Phone number</label><input type="tel" id="famPhone" placeholder="Phone number"/></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn outline" data-action="cancelAddFamily">Cancel</button>
+        <button class="btn primary" data-action="saveFamily">Save</button>
+      </div>
+    </div>`;
+  }
+  return html;
+}
+function screenProfile(){
+  return `<div class="scr">
+    ${header('Profile',{back:true})}
+    <div class="content">
+      <div class="profile-head">
+        <div class="avatar-lg">RS</div>
+        <b style="font-size:16px">Dhananjay Bhandari</b>
+        <small class="subtle">+91 98765 43210 • Sector 7, Guwahati</small>
+        <button class="pill-btn outline mt12" data-action="editProfile">${ic('edit',13)} Edit Profile</button>
+      </div>
+
+      ${familySection()}
+
+      <div class="section-title">Emergency</div>
+      <div class="profile-list">
+        <div class="profile-row"><div class="ic">${ic('file',17)}</div><div><b>My Reports</b><small>${state.myReports.length} incident report(s)</small></div><span class="chev">${ic('chev',16)}</span></div>
+        <div class="profile-row"><div class="ic">${ic('users',17)}</div><div><b>Missing Person Reports</b><small>${state.myMissing.length} report(s)</small></div><span class="chev">${ic('chev',16)}</span></div>
+      </div>
+      <div class="section-title">Preferences</div>
+      <div class="profile-list">
+        <div class="profile-row"><div class="ic">${ic('bellalt',17)}</div><div><b>Notification Preferences</b><small>Critical + Warning alerts</small></div><span class="chev">${ic('chev',16)}</span></div>
+        <div class="profile-row"><div class="ic">${ic('lang',17)}</div><div><b>Language</b><small>English</small></div><span class="chev">${ic('chev',16)}</span></div>
+        <div class="profile-row"><div class="ic">${ic('shield',17)}</div><div><b>Privacy & Security</b><small>Manage data & permissions</small></div><span class="chev">${ic('chev',16)}</span></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- ROUTER / RENDER ---------- */
+const ACTIVE_TAB_BY_SCREEN = {
+  home:'home', officialAlert:'home', sos:'home', sosConfirm:'home', sosStatus:'home',
+  shelters:'home', shelterDetails:'home', missing:'home', missingMatch:'home',
+  risk:'home', feed:'home', feedDetail:'home', chat:'home',
+  reportStep1:'reports', reportStep2:'reports', reportStep3:'reports', reportStatus:'reports', reports:'reports',
+  map:'map',
+  alerts:'alerts', alertDetails:'alerts',
+  profile:'profile',
+};
+function render(){
+  const {screen, arg} = current();
+  let html = '';
+  switch(screen){
+    case 'home': html = screenHome(); break;
+    case 'officialAlert': html = officialAlertDetails(); break;
+    case 'sos': html = screenSOS(); break;
+    case 'sosConfirm': html = screenSosConfirm(); break;
+    case 'sosStatus': html = screenSosStatus(); break;
+    case 'shelters': html = screenShelters(); break;
+    case 'shelterDetails': html = screenShelterDetails(arg); break;
+    case 'reportStep1': html = screenReportStep1(); break;
+    case 'reportStep2': html = screenReportStep2(); break;
+    case 'reportStep3': html = screenReportStep3(); break;
+    case 'reportStatus': html = screenReportStatus(); break;
+    case 'reports': html = screenReportsList(); break;
+    case 'missing': html = screenMissing(); break;
+    case 'missingMatch': html = screenMissingMatch(); break;
+    case 'map': html = screenMap(); break;
+    case 'risk': html = screenRisk(); break;
+    case 'feed': html = screenFeed(); break;
+    case 'feedDetail': html = screenFeedDetail(arg); break;
+    case 'chat': html = screenChat(); break;
+    case 'alerts': html = screenAlerts(); break;
+    case 'alertDetails': html = screenAlertDetails(arg); break;
+    case 'profile': html = screenProfile(); break;
+    default: html = screenHome();
+  }
+  document.getElementById('app').innerHTML = html;
+  document.getElementById('bottomNavHost').innerHTML = bottomNav(ACTIVE_TAB_BY_SCREEN[screen] || 'home');
+  document.getElementById('app').scrollTop = 0;
+
+  if(screen==='sos') initSosSlider();
+  if(screen==='map') setTimeout(initMap, 30);
+  if(screen==='shelterDetails'){ const s=SHELTERS.find(x=>x.id===arg)||SHELTERS[0]; setTimeout(()=>initMiniMap('shelterMiniMap',[26.1489,91.7392],'#1D4FA8'),30); }
+  if(screen==='reportStep2') setTimeout(()=>initMiniMap('reportMiniMap',[26.1445,91.7362],'#D8332B'),30);
+  if(screen==='chat'){ const sc=document.getElementById('chatScroll'); if(sc) sc.scrollTop = sc.scrollHeight; }
+}
+
+/* ---------- ACTIONS ---------- */
+document.addEventListener('click', function(e){
+  const navEl = e.target.closest('[data-nav]');
+  const backEl = e.target.closest('[data-back]');
+  const actionEl = e.target.closest('[data-action]');
+  const promptEl = e.target.closest('[data-chatprompt]');
+
+  if(promptEl){
+    const t = promptEl.getAttribute('data-chatprompt');
+    push('chat');
+    setTimeout(()=>sendChatMessage(t), 120);
+    return;
+  }
+  if(backEl){ goBack(); return; }
+  if(navEl){
+    const screen = navEl.getAttribute('data-nav');
+    const arg = navEl.getAttribute('data-arg');
+    if(navEl.classList.contains('nav-item') || navEl.classList.contains('nav-sos')){
+      if(screen==='sos'){ push('sos'); } else { setTab(screen); }
+      return;
+    }
+    push(screen, arg);
+    return;
+  }
+  if(actionEl){
+    const act = actionEl.getAttribute('data-action');
+    handleAction(act, actionEl);
+    return;
+  }
+});
+
+function handleAction(act, el){
+  switch(act){
+    case 'toggleOffline':
+      state.offline = !state.offline;
+      toast(state.offline? '⚠ Offline mode enabled — data will be saved locally' : '✓ Back online — data synchronized successfully.');
+      render();
+      break;
+    case 'tryNow':
+      if(state.syncQueue>0){ state.syncQueue=0; state.offline=false; toast('✓ Data synchronized successfully.'); render(); }
+      break;
+    case 'callResource':
+      toast('📞 Calling '+el.getAttribute('data-name')+'…');
+      break;
+    case 'routeTo':
+      toast('🧭 Routing to '+el.getAttribute('data-name')+'…');
+      break;
+    case 'voice':
+      toast('🎤 Voice input is simulated in this prototype.');
+      break;
+    case 'confirmSos':
+      confirmSos();
+      break;
+    case 'setIncType':
+      state.reportForm.type = el.getAttribute('data-val');
+      render();
+      break;
+    case 'mockUpload':
+      state.reportForm.photo = true;
+      toast('📷 Photo attached');
+      render();
+      break;
+    case 'toggleMedical':
+      state.reportForm.medical = !state.reportForm.medical;
+      render();
+      break;
+    case 'reportStep1Next':
+      state.reportForm.desc = (document.getElementById('descInput')||{}).value || state.reportForm.desc;
+      state.reportForm.people = (document.getElementById('peopleInput')||{}).value || state.reportForm.people;
+      if(!state.reportForm.type){ toast('Please select an incident type'); return; }
+      push('reportStep2');
+      break;
+    case 'useCurrentLocation':
+      state.reportForm.location = 'Sector 7, Guwahati (GPS)';
+      toast('📍 Current location captured');
+      render();
+      break;
+    case 'reportStep2Next':
+      push('reportStep3');
+      break;
+    case 'submitIncident':
+      const id = 'INC-'+Math.floor(1000+Math.random()*8999);
+      state.myReports.unshift({id, type:state.reportForm.type||'Flood', severity:'HIGH', time:'Just now', status:'AI Analyzed', people:state.reportForm.people||'—'});
+      if(state.offline){ state.syncQueue++; toast('Saved locally — will sync when connection is restored.'); }
+      state.stack = state.stack.slice(0,-3);
+      push('reportStatus');
+      state.reportForm = { type:null, desc:'', people:'', medical:false, photo:false, location:null };
+      break;
+    case 'missingTab':
+      state.missingTab = el.getAttribute('data-val');
+      render();
+      break;
+    case 'mockUploadMissing':
+      state.missingForm.photo = true;
+      toast('📷 Photo attached');
+      render();
+      break;
+    case 'submitMissing':{
+      const f = state.missingForm;
+      f.name = (document.getElementById('mName')||{}).value || f.name;
+      f.age = (document.getElementById('mAge')||{}).value || f.age;
+      f.gender = (document.getElementById('mGender')||{}).value || f.gender;
+      f.lastSeen = (document.getElementById('mLoc')||{}).value || f.lastSeen;
+      f.lastSeenTime = (document.getElementById('mTime')||{}).value || f.lastSeenTime;
+      f.clothing = (document.getElementById('mCloth')||{}).value || f.clothing;
+      f.notes = (document.getElementById('mNotes')||{}).value || f.notes;
+      f.contact = (document.getElementById('mContact')||{}).value || f.contact;
+      f.relation = (document.getElementById('mRelation')||{}).value || f.relation;
+      if(!f.name){ toast("Please enter the person's name"); return; }
+      const mid = 'MP-'+Math.floor(1000+Math.random()*8999);
+      state.myMissing.unshift({id:mid, name:f.name, time:'just now', status:'AI Matching in Progress'});
+      toast('✓ Report created — AI matching in progress');
+      state.missingForm = { name:'', age:'', gender:null, photo:false, lastSeen:'', lastSeenTime:'', clothing:'', notes:'', contact:'', relation:'' };
+      setTimeout(()=>push('missingMatch'), 500);
+      break;
+    }
+    case 'reportIncorrectMatch':
+      toast('Thank you — this match has been flagged for review.');
+      break;
+    case 'viewMatch':
+      push('shelterDetails','SH-04');
+      break;
+    case 'mapFilter':
+      state.activeMapFilter = el.getAttribute('data-val');
+      applyMapFilter();
+      render();
+      setTimeout(()=>initMap(),20);
+      break;
+    case 'focusMarker':{
+      const cat = el.getAttribute('data-cat');
+      const mid = el.getAttribute('data-id');
+      const m = (MAP_MARKERS[cat]||[]).find(x=>x.id===mid);
+      if(!m) break;
+      state.activeMapFilter = 'all';
+      render();
+      setTimeout(()=>{
+        initMap();
+        setTimeout(()=>{
+          if(!leafletMap) return;
+          leafletMap.setView([m.lat,m.lng],16);
+          const grp = layerGroups[cat];
+          if(grp){
+            grp.eachLayer(l=>{
+              const ll = l.getLatLng();
+              if(Math.abs(ll.lat-m.lat)<0.0001 && Math.abs(ll.lng-m.lng)<0.0001){ l.openPopup(); }
+            });
+          }
+        }, 80);
+      }, 30);
+      break;
+    }
+    case 'feedTab':
+      state.feedTab = el.getAttribute('data-val');
+      render();
+      break;
+    case 'markRead':{
+      const aid = el.getAttribute('data-arg');
+      const a = state.alerts.find(x=>x.id===aid);
+      if(a) a.read = true;
+      render();
+      break;
+    }
+    case 'sendChat':{
+      const inp = document.getElementById('chatInput');
+      if(inp && inp.value.trim()){ sendChatMessage(inp.value.trim()); inp.value=''; }
+      break;
+    }
+    case 'chatBtn':{
+      const go = el.getAttribute('data-go');
+      const arg = el.getAttribute('data-arg');
+      push(go, arg||undefined);
+      break;
+    }
+    case 'editProfile':
+      toast('Profile editing is simulated in this prototype.');
+      break;
+    case 'toggleAddFamily':
+      state.showAddFamily = true;
+      render();
+      setTimeout(()=>{ const el2=document.getElementById('famName'); if(el2) el2.focus(); }, 50);
+      break;
+    case 'cancelAddFamily':
+      state.showAddFamily = false;
+      render();
+      break;
+    case 'saveFamily':{
+      const name = (document.getElementById('famName')||{}).value || '';
+      const relation = (document.getElementById('famRelation')||{}).value || '';
+      const phone = (document.getElementById('famPhone')||{}).value || '';
+      if(!name.trim() || !phone.trim()){ toast('Please enter a name and phone number'); return; }
+      state.family.push({name:name.trim(), relation:relation.trim(), phone:phone.trim()});
+      state.showAddFamily = false;
+      toast('✓ Family member added');
+      render();
+      break;
+    }
+    case 'removeFamily':{
+      const idx = parseInt(el.getAttribute('data-idx'),10);
+      state.family.splice(idx,1);
+      toast('Family member removed');
+      render();
+      break;
+    }
+  }
+}
+
+document.addEventListener('keydown', function(e){
+  if(e.key==='Enter' && document.activeElement && document.activeElement.id==='chatInput'){
+    handleAction('sendChat');
+  }
+});
+
+/* Prevent card-level nav from double firing on nested "stop" buttons that are also inside data-nav card */
+document.addEventListener('click', function(e){
+  const stopEl = e.target.closest('[data-stop]');
+  if(stopEl){ e.stopPropagation(); }
+}, true);
+
+/* ---------- STATUS BAR CLOCK ---------- */
+function updateClock(){
+  const el = document.getElementById('clockTxt');
+  if(!el) return;
+  const d = new Date();
+  let h = d.getHours(); const m = d.getMinutes();
+  const ampm = h>=12?'pm':'am';
+  h = h%12; if(h===0) h=12;
+  el.textContent = h+':'+String(m).padStart(2,'0')+' '+ampm;
+}
+updateClock();
+setInterval(updateClock, 15000);
+
+/* ---------- FIT PHONE FRAME TO VIEWPORT ----------
+   vh/vw units are unreliable inside embedded iframes (the artifact preview
+   can report a taller layout than what's actually visible, clipping the
+   phone off-screen). Measuring window.innerWidth/innerHeight directly and
+   sizing the frame in JS guarantees it always fits fully on screen. */
+function fitPhoneFrame(){
+  const frame = document.querySelector('.phone-frame');
+  if(!frame) return;
+  const MARGIN = 14;      // breathing room around the phone
+  const ASPECT = 400/800; // width / height — slightly wider than a real phone for readability
+  const MAX_W = 440;      // don't let it get comically large on big screens
+
+  const availW = Math.max(240, window.innerWidth - MARGIN*2);
+  const availH = Math.max(420, window.innerHeight - MARGIN*2);
+
+  let w = Math.min(availW, MAX_W);
+  let h = w / ASPECT;
+  if(h > availH){
+    h = availH;
+    w = h * ASPECT;
+  }
+  frame.style.width = Math.round(w) + 'px';
+  frame.style.height = Math.round(h) + 'px';
+}
+window.addEventListener('resize', fitPhoneFrame);
+window.addEventListener('orientationchange', fitPhoneFrame);
+fitPhoneFrame();
+// Re-measure once more after fonts/layout settle (helps in some iframe hosts).
+setTimeout(fitPhoneFrame, 150);
+setTimeout(fitPhoneFrame, 500);
+
+/* ---------- INIT ---------- */
+render();
+</script>
+</body>
+</html>
