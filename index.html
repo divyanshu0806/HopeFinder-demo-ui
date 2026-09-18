@@ -358,6 +358,18 @@ input,textarea,select{ font-family:inherit; }
 .profile-row b{ font-size:13.5px; display:block; }
 .profile-row small{ color:var(--text-faint); font-size:11.5px; }
 .profile-row .chev{ margin-left:auto; color:var(--text-faint); }
+.profile-row.clickable{ cursor:pointer; transition:background .15s ease; }
+.profile-row.clickable:active{ background:var(--surface-alt); }
+.language-sheet-backdrop{ position:fixed; inset:0; background:rgba(11,18,32,.48); z-index:200; display:flex; align-items:flex-end; justify-content:center; padding:0; }
+.language-sheet{ width:100%; max-width:430px; background:var(--surface); border-radius:22px 22px 0 0; padding:18px 16px 24px; box-shadow:0 -12px 35px rgba(16,27,45,.2); animation:sheetUp .18s ease; }
+@keyframes sheetUp{ from{transform:translateY(18px);opacity:0;} to{transform:none;opacity:1;} }
+.language-sheet-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.language-sheet-head b{ font-size:16px; }
+.language-close{ width:32px;height:32px;border:none;border-radius:9px;background:var(--surface-alt);color:var(--text-soft);font-size:20px;line-height:1; }
+.language-option{ width:100%; border:1px solid var(--border); background:var(--surface); border-radius:12px; padding:12px 14px; margin-top:8px; display:flex; align-items:center; justify-content:space-between; text-align:left; font-size:13.5px; font-weight:650; color:var(--text); }
+.language-option.active{ border-color:var(--blue); background:var(--blue-tint); color:var(--blue-dark); }
+.language-check{ color:var(--blue); font-weight:800; }
+
 .family-row{ display:flex; align-items:center; gap:12px; padding:13px 14px; border-bottom:1px solid var(--border); }
 .family-row:last-child{ border-bottom:none; }
 .family-avatar{ width:38px;height:38px;border-radius:50%; background:var(--blue-tint); color:var(--blue); display:flex;align-items:center;justify-content:center; font-weight:800; font-size:14px; flex-shrink:0; }
@@ -552,6 +564,8 @@ const state = {
   syncQueue:0,
   family:[],
   showAddFamily:false,
+  language:'English',
+  languageOpen:false,
 };
 
 function push(screen,arg){ state.stack.push({screen,arg}); render(); window.scrollTo(0,0); }
@@ -1559,9 +1573,24 @@ function screenProfile(){
       <div class="section-title">Preferences</div>
       <div class="profile-list">
         <div class="profile-row"><div class="ic">${ic('bellalt',17)}</div><div><b>Notification Preferences</b><small>Critical + Warning alerts</small></div><span class="chev">${ic('chev',16)}</span></div>
-        <div class="profile-row"><div class="ic">${ic('lang',17)}</div><div><b>Language</b><small>English</small></div><span class="chev">${ic('chev',16)}</span></div>
+        <div class="profile-row clickable" data-action="openLanguage"><div class="ic">${ic('lang',17)}</div><div><b>Language</b><small>${state.language}</small></div><span class="chev">${ic('chev',16)}</span></div>
         <div class="profile-row"><div class="ic">${ic('shield',17)}</div><div><b>Privacy & Security</b><small>Manage data & permissions</small></div><span class="chev">${ic('chev',16)}</span></div>
       </div>
+    </div>
+  </div>`;
+}
+
+function languageSheet(){
+  const languages = ['English','Hindi','Punjabi','Marathi','Bengali'];
+  return `<div class="language-sheet-backdrop" data-action="closeLanguage">
+    <div class="language-sheet" onclick="event.stopPropagation()">
+      <div class="language-sheet-head">
+        <b>Select Language</b>
+        <button class="language-close" data-action="closeLanguage" aria-label="Close">×</button>
+      </div>
+      ${languages.map(lang => `<button class="language-option ${state.language===lang?'active':''}" data-action="selectLanguage" data-lang="${lang}">
+        <span>${lang}</span>${state.language===lang?'<span class="language-check">✓</span>':''}
+      </button>`).join('')}
     </div>
   </div>`;
 }
@@ -1613,6 +1642,8 @@ function render(){
   if(screen==='shelterDetails'){ const s=SHELTERS.find(x=>x.id===arg)||SHELTERS[0]; setTimeout(()=>initMiniMap('shelterMiniMap',[26.1489,91.7392],'#1D4FA8'),30); }
   if(screen==='reportStep2') setTimeout(()=>initMiniMap('reportMiniMap',[26.1445,91.7362],'#D8332B'),30);
   if(screen==='chat'){ const sc=document.getElementById('chatScroll'); if(sc) sc.scrollTop = sc.scrollHeight; }
+  const langHost = document.getElementById('languageSheetHost');
+  if(langHost) langHost.innerHTML = state.languageOpen ? languageSheet() : '';
 }
 
 /* ---------- ACTIONS ---------- */
@@ -1648,6 +1679,20 @@ document.addEventListener('click', function(e){
 
 function handleAction(act, el){
   switch(act){
+    case 'openLanguage':
+      state.languageOpen = true;
+      render();
+      break;
+    case 'closeLanguage':
+      state.languageOpen = false;
+      render();
+      break;
+    case 'selectLanguage':
+      state.language = el.getAttribute('data-lang') || 'English';
+      state.languageOpen = false;
+      toast('✓ Language set to ' + state.language);
+      render();
+      break;
     case 'toggleOffline':
       state.offline = !state.offline;
       toast(state.offline? '⚠ Offline mode enabled — data will be saved locally' : '✓ Back online — data synchronized successfully.');
@@ -1880,5 +1925,6 @@ setTimeout(fitPhoneFrame, 500);
 /* ---------- INIT ---------- */
 render();
 </script>
+<div id="languageSheetHost"></div>
 </body>
 </html>
